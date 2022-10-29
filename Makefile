@@ -1,5 +1,8 @@
 NAME = fdf
-SRC = files/test_mlx.c
+SRC =	files/main.c \
+		files/test_mlx.c \
+		files/put_line.c \
+		files/error.c
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
 
