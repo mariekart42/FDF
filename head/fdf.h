@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/29 13:30:24 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:17:14 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 // #include <stdlib.h>
 // #include <stdio.h>
 # include <stdbool.h>
+
+// defines macros for exit func (EXIT_SUCCESS and EXIT_FAILURE)
+# include <stdlib.h>
 
 typedef struct	s_data
 {
