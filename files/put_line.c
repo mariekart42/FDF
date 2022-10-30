@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 18:56:37 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/30 20:18:36 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void bresenham_algo(t_data *x_data, int32_t colour)
 	}
 	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data), find_y(x_data), colour);
 }
-
+	
 // explaination different if-statements:
 // 1. if bot dots are exactly the same -> just put the one pixel
 // 2. if both dots have the same x-val -> its just a vertical line
