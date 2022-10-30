@@ -6,12 +6,15 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 18:51:42 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:57:46 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef FDF_H
 #define FDF_H
+
+# define WIDHT 1000
+# define HIGHT 700
 
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
