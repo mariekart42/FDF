@@ -1,5 +1,6 @@
 NAME = fdf
-SRC =	files/main.c \
+SRC =	files/delete_later_funcs.c \
+		files/main.c \
 		files/test_mlx.c \
 		files/put_line.c \
 		files/error.c
@@ -13,10 +14,12 @@ all: $(NAME)
 
 $(NAME):
 	$(MAKE) -C mlx
+	$(MAKE) -C libft
 	$(CC) $(SRC) $(CFLAGS) $(NAME)
 	@echo "Everything compiled successfully"
 
 g:
+	$(MAKE) -C libft
 	$(CC) $(SRC) $(CFLAGS) $(NAME)
 	@echo "my shit compiled successfully"
 
@@ -25,6 +28,7 @@ clean:
 	
 fclean: clean
 	@$(MAKE) clean -C mlx/
+	@$(MAKE) clean -C libft/
 	
 re: fclean all
 # -Og -g3 -fsanitize=address
