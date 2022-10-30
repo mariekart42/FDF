@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 16:19:02 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/30 18:56:37 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * 	  needs to get substarcted 
  *    by 1 to reach P2
  */
-int8_t get_go_factor(t_data *x_data)
+float get_go_factor(t_data *x_data)
 {
 	if (x_data->y[0] < x_data->y[1])
 		return (1);
@@ -57,7 +57,7 @@ void init_koordinates(t_data *x_data)
 /*
  * function returns the x_value that is either fast[0] or slow[0]
  */
-int find_x(t_data *x_data)
+float find_x(t_data *x_data)
 {
 	if (x_data->slow[1] == 120)
 		return (x_data->slow[0]);
@@ -68,7 +68,7 @@ int find_x(t_data *x_data)
 /*
  * function returns the y_value that is either fast[0] or slow[0]
  */
-int find_y(t_data *x_data)
+float find_y(t_data *x_data)
 {
 	if (x_data->slow[1] == 121)
 		return (x_data->slow[0]);
@@ -151,9 +151,9 @@ void init_direction_speed(t_data *x_data)
  */
 void bresenham_algo(t_data *x_data, int32_t colour)
 {
-	int8_t	go_factor;
-	int32_t	diff;
-	int32_t tmp_diff;
+	float	go_factor;// eigentlich int aber villeicht nen problem beim rechnen later
+	float	diff;
+	float tmp_diff;
 
 	init_koordinates(x_data);
 	init_direction_speed(x_data);
@@ -161,21 +161,26 @@ void bresenham_algo(t_data *x_data, int32_t colour)
 	diff = find_x(x_data) / 2;
 	tmp_diff = 0;
 	
+	int i = 300;
 	// error here in while loop -> reached_second_point never turns true
-	while (reached_second_point(x_data) == false)
+	while (i > 0)//reached_second_point(x_data) == false)
 	{
-	printf("in while loop\n");
-		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data), find_y(x_data), colour);
+		// printf("in while loop\n");
 		x_data->fast[0]++;
 		// always if the difference is below 0, i calculate the new difference 
 		// and slow direction gets substracted/additioned(go_factor) by one 
-		if ((diff - find_x(x_data)) < 0)
+		printf("find x: %f\n", find_x(x_data));
+		printf("diff: %f\n", diff);
+		printf("dif - find x: %f\n\n", diff - find_x(x_data));
+		if ((diff - x_data->y[1]) < 0)
 		{
-			x_data->slow[0]++;
-			tmp_diff = diff - find_y(x_data);
+		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data), find_y(x_data), colour);
+			x_data->slow[0] += go_factor;
+			tmp_diff = diff + x_data->x[1];
 			diff = tmp_diff;
 			tmp_diff = 0;
 		}
+		i--;
 	}
 	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data), find_y(x_data), colour);
 }
