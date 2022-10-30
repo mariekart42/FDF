@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 16:15:02 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:00:13 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int main(void)
     init_x(&x, 10, 500);
     init_y(&x, 10, 300);
     
-    put_line(&x, 0xeec900);
-    
     put_cross(&x, 10, 10);
+    put_cross(&x, 40, 10);
+    put_cross(&x, 40, 40);
     put_cross(&x, 500, 300);
+    
+    put_line(&x, 0xeec900);
     
     mlx_loop(x.mlx);
 }

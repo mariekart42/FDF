@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 16:09:53 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/30 18:51:42 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 
 typedef struct	s_data
 {
-    int     x[2];
-    int     y[2];
+    int32_t     x[2];
+    int32_t     y[2];
 	
 	
 	// put line
-	int32_t	slow[2];
-	int32_t fast[2];
+	float	slow[2];
+	float fast[2];
 
     
     void	*mlx;
@@ -61,10 +61,10 @@ void put_horizontal_line(t_data *x_data, int colour);
 
 
 //		put_line.c
-int8_t get_go_factor(t_data *x_data);
+float get_go_factor(t_data *x_data);
 void init_koordinates(t_data *x_data);
-int find_x(t_data *x_data);
-int find_y(t_data *x_data);
+float find_x(t_data *x_data);
+float find_y(t_data *x_data);
 bool reached_second_point(t_data *x_data);
 void init_direction_speed(t_data *x_data);
 void bresenham_algo(t_data *x_data, int32_t colour);
