@@ -6,34 +6,21 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 20:18:36 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:21:20 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
+#include "../libft/libft.h"
 
-/*
- * function checks if the first point is below or above the second point
- *  
- * y^ 										y^
- *	| P1 x       							 |           x P2
- *  |            							 |
- *  |           x P2						 | P1 x		
- *  I-------------->x						 I-------------->x
- *   -> y[0] > y[1] 						  -> y[0] < y[1]
- *   -> P1 is ABOVE P2						  -> P1 is BELOW P2
- * => go_factor is -1 cause in 				=> go_factor needs to be +1
- * 	  the bresenham-algo, y always 
- * 	  needs to get substarcted 
- *    by 1 to reach P2
- */
-float get_go_factor(t_data *x_data)
-{
-	if (x_data->y[0] < x_data->y[1])
-		return (1);
-	else
-		return (-1);
-}
+
+// float get_go_factor(t_data *x_data)
+// {
+// 	if (x_data->y[0] > x_data->y[1])
+// 		return (-1);
+// 	else
+// 		return (1);
+// }
 
 /*
  * function checks if P1 is always on the right side from P2 (P2 always left side)
@@ -55,22 +42,30 @@ void init_koordinates(t_data *x_data)
 }
 
 /*
- * function returns the x_value that is either fast[0] or slow[0]
+ * - if i need the value of the second x (of P2), 
+ *   string needs to be "x2"
+ * - function returns the x_value that is either fast[0] or slow[0]
  */
-float find_x(t_data *x_data)
+float find_x(t_data *x_data, char *y1_or_y2)
 {
-	if (x_data->slow[1] == 120)
+	if (ft_strncmp(y1_or_y2, "x2", 2) == 0)
+		return (x_data->x[1]);
+	else if (x_data->slow[1] == 120)
 		return (x_data->slow[0]);
 	else
 		return (x_data->fast[0]);
 }
 
 /*
- * function returns the y_value that is either fast[0] or slow[0]
+ * - if i need the value of the second y (of P2), 
+ *   string needs to be "y2"
+ * - function returns the y_value that is either fast[0] or slow[0]
  */
-float find_y(t_data *x_data)
+float find_y(t_data *x_data, char *y1_or_y2)
 {
-	if (x_data->slow[1] == 121)
+	if (ft_strncmp(y1_or_y2, "y2", 2) == 0)
+		return (x_data->y[1]);
+	else if (x_data->slow[1] == 121)
 		return (x_data->slow[0]);
 	else
 		return (x_data->fast[0]);
@@ -83,7 +78,7 @@ float find_y(t_data *x_data)
  */
 bool reached_second_point(t_data *x_data)
 {
-	if (find_x(x_data) == x_data->x[1] && find_y(x_data) == x_data->y[1])
+	if (find_x(x_data, "x1") == x_data->x[1] && find_y(x_data, "y1") == x_data->y[1])
 		return (true);
 	else
 		return (false);
@@ -108,8 +103,8 @@ bool reached_second_point(t_data *x_data)
  */
 void init_direction_speed(t_data *x_data)
 {
-	int32_t tmp_x;
-	int32_t tmp_y;
+	float tmp_x;
+	float tmp_y;
 	
 	// init difference of both Points to tmp, 
 	// if val is negative -> make pos 
@@ -124,6 +119,7 @@ void init_direction_speed(t_data *x_data)
 	// means x is the fast direction and y the slow one or they're both the same
 	if (tmp_x >= tmp_y)
 	{
+		printf("direction_speed: x\n");
 		x_data->slow[0] = x_data->y[0];
 		x_data->slow[1] = 121;
 		x_data->fast[0] = x_data->x[0];
@@ -131,11 +127,63 @@ void init_direction_speed(t_data *x_data)
 	}
 	else // else y is the fast direction and x slow
 	{
+		printf("direction_speed: y\n");
 		x_data->slow[0] = x_data->x[0];
 		x_data->slow[1] = 120;
 		x_data->fast[0] = x_data->y[0];
 		x_data->fast[1] = 121;
 	}
+}
+/*
+ * function checks first if the slow direction is x, if yes the slow_factor is alway +1
+ *		but if the slow direction is y, it could either be -1 or +1
+ *		then function checks if the first point is below or above the second point
+ * MIND: 	in mlx the origin is not with ([x] 0/[y] 0) in the left-down corner
+ * 			y0 is in the left-up corner
+ * 			x0 is in the left-down corner
+ *   y									y 
+ *  0_^ 							   0_^
+ *	1_| P1 x       					   1_|           x P2
+ *  2_|            					   2_|
+ *  3_|           x P2				   3_| P1 x		
+ *  4_I-------------->x				   4_I-------------->x
+ *    0 1 2 3 4 5 6 7 					 0 1 2 3 4 5 6 7
+ * 	 
+ * -> y[0] < y[1] 						  -> y[0] > y[1]
+ *   -> P1 is ABOVE P2						-> P1 is BELOW P2
+ * => slow_factor is +1 cause in 		  => slow_factor needs to be -1
+ * 	  the bresenham-algo, y always 	     	 always needs to subtract
+ * 	  needs to get added 					 one to reach P2
+ *    by 1 to reach P2
+ */
+float get_slow_factor(t_data *x_data)
+{
+	if (x_data->slow[1] == 120)
+		return (1);
+	else if (x_data->slow[1] == 121 && x_data->y[0] > x_data->y[1])
+		return (-1);
+	else if (x_data->slow[1] == 121 && x_data->y[0] < x_data->y[1])
+		return (1);
+	else
+		error_msg("not able to access slow_factor ---> exit here\n");
+	exit(EXIT_FAILURE);
+}
+
+/*
+ * same as get_slow_fatcor() but for the fast factor
+ * check out get_slow_factor() for more information
+ */
+float get_fast_factor(t_data *x_data)
+{
+	if (x_data->fast[1] == 120)
+		return (1);
+	else if (x_data->fast[1] == 121 && x_data->y[0] > x_data->y[1])
+		return (-1);
+	else if (x_data->fast[1] == 121 && x_data->y[0] < x_data->y[1])
+		return (1);
+	else
+		error_msg("not able to access fast_factor ---> exit here\n");
+	exit(EXIT_FAILURE);
 }
 
 /*
@@ -151,38 +199,35 @@ void init_direction_speed(t_data *x_data)
  */
 void bresenham_algo(t_data *x_data, int32_t colour)
 {
-	float	go_factor;// eigentlich int aber villeicht nen problem beim rechnen later
+	float	slow_factor;// eigentlich int aber villeicht nen problem beim rechnen later
+	float	fast_factor;
 	float	diff;
-	float tmp_diff;
 
 	init_koordinates(x_data);
 	init_direction_speed(x_data);
-	go_factor = get_go_factor(x_data);
-	diff = find_x(x_data) / 2;
-	tmp_diff = 0;
+	slow_factor = get_slow_factor(x_data);
+	fast_factor = get_fast_factor(x_data);
+	diff = find_x(x_data, "x2") / 2;
+	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 	
-	int i = 300;
+	int i = 100;
 	// error here in while loop -> reached_second_point never turns true
 	while (i > 0)//reached_second_point(x_data) == false)
 	{
-		// printf("in while loop\n");
-		x_data->fast[0]++;
-		// always if the difference is below 0, i calculate the new difference 
-		// and slow direction gets substracted/additioned(go_factor) by one 
-		printf("find x: %f\n", find_x(x_data));
-		printf("diff: %f\n", diff);
-		printf("dif - find x: %f\n\n", diff - find_x(x_data));
-		if ((diff - x_data->y[1]) < 0)
+		x_data->fast[0] += fast_factor;
+		// if statement asks if the differnce between the last y value and the y value
+		// on the actual line is smoler then 0.5
+		printf("m = %f\nx[1] = %f\nb = %f\n\n", m(x_data), x_data->x[1], b(x_data));
+		printf("");
+		if ( (m(x_data) * x_data->x[1] + b(x_data)) - ( find_y(x_data, "y1")  ) < 0.5 )
 		{
-		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data), find_y(x_data), colour);
-			x_data->slow[0] += go_factor;
-			tmp_diff = diff + x_data->x[1];
-			diff = tmp_diff;
-			tmp_diff = 0;
+			printf("i'm in\n");
+			x_data->slow[0] += slow_factor;
+			mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 		}
 		i--;
 	}
-	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data), find_y(x_data), colour);
+	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 }
 	
 // explaination different if-statements:
@@ -203,5 +248,6 @@ void put_line(t_data *x_data, int32_t colour)
 		bresenham_algo(x_data, colour);
 
 	}
-
+printf("done\n");
+return ;
 }

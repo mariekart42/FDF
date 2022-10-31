@@ -1,5 +1,7 @@
 NAME = fdf
 SRC =	files/delete_later_funcs.c \
+		files/include_libft.c \
+		files/math.c \
 		files/main.c \
 		files/test_mlx.c \
 		files/put_line.c \
@@ -13,8 +15,8 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):
-	$(MAKE) -C mlx
-	$(MAKE) -C libft
+	$(MAKE) -C mlx/
+	$(MAKE) -C libft/
 	$(CC) $(SRC) $(CFLAGS) $(NAME)
 	@echo "Everything compiled successfully"
 

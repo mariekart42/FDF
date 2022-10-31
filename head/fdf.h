@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 19:57:46 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:53:54 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 typedef struct	s_data
 {
-    int32_t     x[2];
-    int32_t     y[2];
+    float     x[2];
+    float     y[2];
 	
 	
 	// put line
@@ -50,10 +50,19 @@ typedef struct	s_data
 //		delete_later_funcs.c
 void put_cross(t_data *x_data,int x, int y);
 
+//		include_libft.c
+size_t	ft_strlen(const char *str);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+
 
 //		not_compile_funcs.c
 void put_rectangle(t_data *x_data, int colour);
 void shift_rectangle(t_data *x_data, int colour, bool right, bool up, int times, int sep);
+
+//		math.c
+float m(t_data *x_data);
+float b(t_data *x_data);
+
 
 
 //		test_mlx.c
@@ -64,10 +73,12 @@ void put_horizontal_line(t_data *x_data, int colour);
 
 
 //		put_line.c
-float get_go_factor(t_data *x_data);
+// float get_go_factor(t_data *x_data);
+float get_slow_factor(t_data *x_data);
+float get_fast_factor(t_data *x_data);
 void init_koordinates(t_data *x_data);
-float find_x(t_data *x_data);
-float find_y(t_data *x_data);
+float find_x(t_data *x_data, char *y1_or_y2);
+float find_y(t_data *x_data, char *y1_or_y2);
 bool reached_second_point(t_data *x_data);
 void init_direction_speed(t_data *x_data);
 void bresenham_algo(t_data *x_data, int32_t colour);

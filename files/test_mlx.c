@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:33:14 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/30 20:08:56 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:28:01 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void init_x(t_data *x_data, int x1, int x2)
 
 void init_y(t_data *x_data, int y1, int y2)
 {
-	x_data->y[0] = HIGHT - y1;
-	x_data->y[1] = HIGHT - y2;
+	x_data->y[0] = y1;
+	x_data->y[1] = y2;
 }
