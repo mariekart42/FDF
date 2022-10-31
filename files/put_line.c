@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 19:14:43 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/31 19:16:40 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,6 @@ void bresenham_algo(t_data *x_data, int32_t colour)
 {
 	float	slow_factor;// eigentlich int aber villeicht nen problem bei dem rechnen später
 	float	fast_factor;
-	float	diff;
 
  // streich holz schächtel chen
 
