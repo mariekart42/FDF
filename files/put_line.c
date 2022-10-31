@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 17:21:20 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/31 19:14:43 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,35 +199,30 @@ float get_fast_factor(t_data *x_data)
  */
 void bresenham_algo(t_data *x_data, int32_t colour)
 {
-	float	slow_factor;// eigentlich int aber villeicht nen problem beim rechnen later
+	float	slow_factor;// eigentlich int aber villeicht nen problem bei dem rechnen später
 	float	fast_factor;
 	float	diff;
+
+ // streich holz schächtel chen
 
 	init_koordinates(x_data);
 	init_direction_speed(x_data);
 	slow_factor = get_slow_factor(x_data);
 	fast_factor = get_fast_factor(x_data);
-	diff = find_x(x_data, "x2") / 2;
 	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 	
-	int i = 100;
-	// error here in while loop -> reached_second_point never turns true
-	while (i > 0)//reached_second_point(x_data) == false)
+	while (reached_second_point(x_data) == false)
 	{
 		x_data->fast[0] += fast_factor;
+		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 		// if statement asks if the differnce between the last y value and the y value
 		// on the actual line is smoler then 0.5
-		printf("m = %f\nx[1] = %f\nb = %f\n\n", m(x_data), x_data->x[1], b(x_data));
-		printf("");
-		if ( (m(x_data) * x_data->x[1] + b(x_data)) - ( find_y(x_data, "y1")  ) < 0.5 )
+		if (( find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data))) > 0.5 )
 		{
-			printf("i'm in\n");
 			x_data->slow[0] += slow_factor;
-			mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 		}
-		i--;
 	}
-	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
+	// mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 }
 	
 // explaination different if-statements:
