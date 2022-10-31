@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 19:33:11 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/10/31 19:41:42 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,31 @@ int main(void)
     
 
     // CASE 1 (x fast, P1 below P2) => WORKS
-    // put_cross(&x, 300, HIGHT-100);
-    // put_cross(&x, 800, HIGHT-300);
-    //     init_x(&x, 300, 800);
-    //     init_y(&x, HIGHT-100, HIGHT-300);
+    // int x1=300;  int y1=HIGHT-100;
+    // int x2=800;  int y2=HIGHT-300;
     
     
     // CASE 2 (y fast, P1 below P2) => not working
-    // put_cross(&x, 400, HIGHT-100);
-    // put_cross(&x, 600, HIGHT-500);
-    //     init_x(&x, 400, 600);
-    //     init_y(&x, HIGHT-100, HIGHT-500);
-    
+    int x1=400; int y1=HIGHT-100;
+    int x2=600; int y2=HIGHT-500;
+
 
     // CASE 3 (x fast, P1 above P2) => not working
-    // put_cross(&x, 300, HIGHT-300);
-    // put_cross(&x, 800, HIGHT-100);
-    //     init_x(&x, 300, 800);
-    //     init_y(&x, HIGHT-300, HIGHT-100);
-    
-    
-    // CASE 4 (y fast, P1 above P2) => WORKS
-    put_cross(&x, 400, HIGHT-500);
-    put_cross(&x, 600, HIGHT-100);
-        init_x(&x, 400, 600);
-        init_y(&x, HIGHT-500, HIGHT-100);
-    
+    // int x1=300; int y1=HIGHT-300;
+    // int x2=800; int y2=HIGHT-100;
 
     
+    // CASE 4 (y fast, P1 above P2) => WORKS
+    // int x1=400; int y1=HIGHT-500;
+    // int x2=600; int y2=HIGHT-100;
+
+    
+    put_cross(&x, x1, y1);
+    put_cross(&x, x2, y2);
+    
+    init_x(&x, x1, x2);
+    init_y(&x, y1, y2);
+
     put_line(&x, 0xeec900);
     
     mlx_loop(x.mlx);
