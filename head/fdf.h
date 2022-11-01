@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 15:53:54 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/01 09:56:11 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,22 @@ typedef struct	s_data
 	// int		endian;
 }				t_data;
 
+//colour shit
+# define RED   "\x1B[31m"
+# define GRN   "\x1B[32m"
+# define YEL   "\x1B[33m"
+# define BLU   "\x1B[34m"
+# define MAG   "\x1B[35m"
+# define CYN   "\x1B[36m"
+# define WHT   "\x1B[37m"
+
+# define RESET "\x1B[0m"
+
 
 //		delete_later_funcs.c
 void put_cross(t_data *x_data,int x, int y);
+void print_case(t_data *x_data, float slow_f);
+void print_factor(float fast_f, float slow_f);
 
 //		include_libft.c
 size_t	ft_strlen(const char *str);

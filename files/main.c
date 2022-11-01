@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 19:41:42 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/01 19:53:23 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main(void)
 {
+    printf(YEL"\n>------- start -------\n"RESET);
     void *mlx = 0;
     void *mlx_win = 0;
     t_data x;
@@ -41,8 +42,8 @@ int main(void)
 
     
     // CASE 4 (y fast, P1 above P2) => WORKS
-    // int x1=400; int y1=HIGHT-500;
-    // int x2=600; int y2=HIGHT-100;
+    // int x1=100; int y1=HIGHT-500;
+    // int x2=300; int y2=HIGHT-100;
 
     
     put_cross(&x, x1, y1);

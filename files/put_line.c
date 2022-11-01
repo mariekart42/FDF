@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 19:16:40 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/01 20:11:59 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void init_direction_speed(t_data *x_data)
 	// means x is the fast direction and y the slow one or they're both the same
 	if (tmp_x >= tmp_y)
 	{
-		printf("direction_speed: x\n");
+		printf("direction_speed: "YEL "x\n"RESET);
 		x_data->slow[0] = x_data->y[0];
 		x_data->slow[1] = 121;
 		x_data->fast[0] = x_data->x[0];
@@ -127,7 +127,7 @@ void init_direction_speed(t_data *x_data)
 	}
 	else // else y is the fast direction and x slow
 	{
-		printf("direction_speed: y\n");
+		printf("direction_speed: "YEL "y\n"RESET);
 		x_data->slow[0] = x_data->x[0];
 		x_data->slow[1] = 120;
 		x_data->fast[0] = x_data->y[0];
@@ -187,6 +187,54 @@ float get_fast_factor(t_data *x_data)
 }
 
 /*
+ * function calculates the disctance between the current coordinate and 
+ * either:    the point on the line with the same y-value (y = mx+b)
+ * 		   or the point on the line with the same x-value (x = [y-b]/m)
+ * 	=>	depends on the gradient and the fast/slow-direction of the line (4 cases)
+ * CASE 1: 					   |  CASE 2:
+ * - negative gradient		   |  - negative gradient
+ * - fast direction = x	       |  - fast_direction = y
+ *   y						   |	y 
+ *  0_^ 					   |   0_^			x P2
+ *	1_|      		 		   |   1_|           
+ *  2_|              x P2	   |   2_|
+ *  3_| P1 x            	   |   3_|   P1 x		
+ *  4_I-------------->x		   |   4_I-------------->x
+ *    0 1 2 3 4 5 6 7 		   |	 0 1 2 3 4 5 6 7
+ * 	    => y = mx+b			   |	   => x = [y-b]/m
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * CASE 3:					   |  CASE 4:
+ * - positive gradient		   |  - positive gradient
+ * - fast direction = x		   |  - fast direction = y 
+ *   y						   |    y 
+ *  0_^ 					   |  0_^   P2 x		
+ *	1_|        				   |  1_|           
+ *  2_| P1 x            	   |  2_|
+ *  3_|              x P2	   |  3_|   		x P1
+ *  4_I-------------->x		   |  4_I-------------->x
+ *    0 1 2 3 4 5 6 7 		   |    0 1 2 3 4 5 6 7
+ * 		=> x = [y-b]/m		   | 	  => y = mx+b	
+ */
+float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
+{
+	// if case 1 or 4
+	if ((x_data->slow[1] == 121 && slow_factor == -1) \
+		|| (x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == 1))
+		return (find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data)));
+	// if case 2 or 3
+	else if ((x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1) \
+		|| (x_data->slow[1] == 121 && slow_factor == 1))
+	{
+		float result = ((find_x(x_data, "x1") - b(x_data)) / m(x_data))     - find_x(x_data, "x1"); 
+		printf("result: %f\n", result);
+		return (result);
+	}
+	else
+		error_msg("failed to execute distance_to _line\n");
+		return (0);
+}
+
+/*
  * go_factor:	
  * - is +1 if P1 is below P2, is -1 if P1 is above P2
  *	(check out get_go_factor() for more information)
@@ -209,17 +257,22 @@ void bresenham_algo(t_data *x_data, int32_t colour)
 	slow_factor = get_slow_factor(x_data);
 	fast_factor = get_fast_factor(x_data);
 	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
-	
-	while (reached_second_point(x_data) == false)
+	print_case(x_data, slow_factor);
+	print_factor(fast_factor, slow_factor);
+	int i = 0;
+	while (i < 800)//reached_second_point(x_data) == false)
 	{
 		x_data->fast[0] += fast_factor;
 		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
+		
 		// if statement asks if the differnce between the last y value and the y value
-		// on the actual line is smoler then 0.5
-		if (( find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data))) > 0.5 )
+		// on the actual line is bigger then 0.5
+		// if ((find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data))) > 0.5)
+		if (distance_to_line(x_data, slow_factor, fast_factor) > 0.5)
 		{
 			x_data->slow[0] += slow_factor;
 		}
+		i++;
 	}
 	// mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 }
@@ -242,6 +295,6 @@ void put_line(t_data *x_data, int32_t colour)
 		bresenham_algo(x_data, colour);
 
 	}
-printf("done\n");
+printf(GRN"--> done\n"RESET);
 return ;
 }

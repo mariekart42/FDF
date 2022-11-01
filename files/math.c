@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:17:02 by mmensing          #+#    #+#             */
-/*   Updated: 2022/10/31 18:45:52 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/01 20:10:53 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ float b(t_data *x_data)
 	float b;
 
 	b = m(x_data) * x_data->x[1] - x_data->y[1];
-	return (b * (-1));
+	return (b);
+	// return (b * (-1));
 }
