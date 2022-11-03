@@ -28,15 +28,15 @@ void put_cross(t_data *x_data,int x, int y)
 	mlx_pixel_put(x_data->mlx, x_data->mlx_win, save_x, save_y, 0XFF0000);
 }
 
-void print_case(t_data *x_data, float slow_f)
+void print_case(t_data *x_data, float slow_f, float fast_f)
 {
 	if (x_data->slow[1] == 121 && slow_f ==-1)
 		printf("case:"MAG" 1\n"YEL"-  -  -  -  -  -  -  -\n\n"RESET);
-	else if (x_data->slow[1]==120 && slow_f==1)
+	else if (x_data->slow[1]==120 && slow_f==1 && fast_f==-1)
 		printf("case:"MAG" 2\n"YEL"-  -  -  -  -  -  -  -\n\n"RESET);
 	else if (x_data->slow[1]==121 && slow_f==1)
 		printf("case:"MAG" 3\n"YEL"-  -  -  -  -  -  -  -\n\n"RESET);
-	else if (x_data->slow[1]==120 && slow_f==-1)
+	else if (x_data->slow[1]==120 && slow_f==1 && fast_f==1)
 		printf("case:"MAG" 4\n"YEL"-  -  -  -  -  -  -  -\n\n"RESET);
 	else
 		printf(RED"something wrong with print case_func\n\n"RESET);

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/01 09:56:11 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:26:46 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct	s_data
 
 //		delete_later_funcs.c
 void put_cross(t_data *x_data,int x, int y);
-void print_case(t_data *x_data, float slow_f);
+void print_case(t_data *x_data, float slow_f, float fast_f);
 void print_factor(float fast_f, float slow_f);
 
 //		include_libft.c

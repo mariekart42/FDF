@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/01 20:11:59 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:27:03 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,19 +218,33 @@ float get_fast_factor(t_data *x_data)
 float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
 {
 	// if case 1 or 4
-	if ((x_data->slow[1] == 121 && slow_factor == -1) \
+	if ((x_data->slow[1] == 121 && slow_factor == -1 && fast_factor == 1) \
 		|| (x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == 1))
 		return (find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data)));
+
 	// if case 2 or 3
-	else if ((x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1) \
+	if ((x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1) \
 		|| (x_data->slow[1] == 121 && slow_factor == 1))
 	{
-		float result = ((find_x(x_data, "x1") - b(x_data)) / m(x_data))     - find_x(x_data, "x1"); 
-		printf("result: %f\n", result);
+		
+		printf("debug here\n");
+		
+		
+
+
+
+		float line_vl = (HIGHT - find_y(x_data, "y1") + b(x_data)) / m(x_data);
+		printf("line_val: %f\n", line_vl);
+		
+		float known_x = find_x(x_data, "x1");
+		
+		float result = (line_vl - known_x);
+		printf("result: %f\n\n", result);
+		// printf("result: %f\n", result);
 		return (result);
 	}
 	else
-		error_msg("failed to execute distance_to _line\n");
+		error_msg("failed to execute distance_to_line\n");
 		return (0);
 }
 
@@ -257,14 +271,16 @@ void bresenham_algo(t_data *x_data, int32_t colour)
 	slow_factor = get_slow_factor(x_data);
 	fast_factor = get_fast_factor(x_data);
 	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
-	print_case(x_data, slow_factor);
+	print_case(x_data, slow_factor, fast_factor);
 	print_factor(fast_factor, slow_factor);
 	int i = 0;
-	while (i < 800)//reached_second_point(x_data) == false)
+	while (reached_second_point(x_data) == false) //
 	{
 		x_data->fast[0] += fast_factor;
 		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 		
+		
+
 		// if statement asks if the differnce between the last y value and the y value
 		// on the actual line is bigger then 0.5
 		// if ((find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data))) > 0.5)
