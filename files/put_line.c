@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/03 18:27:03 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:50:12 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
 	// if case 1 or 4
 	if ((x_data->slow[1] == 121 && slow_factor == -1 && fast_factor == 1) \
 		|| (x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == 1))
-		return (find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data)));
+		return (find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data, 1)));
 
 	// if case 2 or 3
 	if ((x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1) \
@@ -233,7 +233,7 @@ float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
 
 
 
-		float line_vl = (HIGHT - find_y(x_data, "y1") + b(x_data)) / m(x_data);
+		float line_vl = (HIGHT - find_y(x_data, "y1") + b(x_data, 2)) / m(x_data);
 		printf("line_val: %f\n", line_vl);
 		
 		float known_x = find_x(x_data, "x1");

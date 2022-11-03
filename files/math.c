@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:17:02 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/03 18:24:01 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/03 21:24:01 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,20 @@ float m(t_data *x_data)
  *  or  b = m * x2 - y1
  * (i always take x2 and y2 cause they don't change during the algo)
  */
-float b(t_data *x_data)
+float b_(t_data *x_data, int case)
 {
 	float b;
-
-	b = m(x_data) * x_data->x[1] - (HIGHT - x_data->y[1]); //origninal
-	if(b<0)
-		b*=-1;
-	return (b);
+	
+	if (case == 1 || case == 4)
+	{
+		b = m(x_data) * x_data->x[1] - x_data->y[1];
+		return (b);
+	}
+	else 
+	{
+		b = m(x_data) * x_data->x[1] - (HIGHT - x_data->y[1]);
+		if(b<0)
+			b*=-1;
+		return (b);
+	}
 }
