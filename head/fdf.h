@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/03 21:22:06 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:50:18 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void shift_rectangle(t_data *x_data, int colour, bool right, bool up, int times,
 
 //		math.c
 float m(t_data *x_data);
-float b_(t_data *x_data, int case);
+float b(t_data *x_data, int case);
 
 
 
