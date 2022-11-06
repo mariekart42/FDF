@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/04 11:50:18 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/06 20:09:29 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define FDF_H
 
 # define WIDHT 1000
-# define HIGHT 700
+# define HIGHT 1000
 
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
@@ -73,8 +73,8 @@ void put_rectangle(t_data *x_data, int colour);
 void shift_rectangle(t_data *x_data, int colour, bool right, bool up, int times, int sep);
 
 //		math.c
-float m(t_data *x_data);
-float b(t_data *x_data, int case);
+float m(t_data *x_data, int case_);
+float b(t_data *x_data, int case_);
 
 
 
