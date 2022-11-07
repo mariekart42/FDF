@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/07 13:34:20 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:44:00 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ int main(void)
     // CASE 2 (y fast, P1 below P2) => WORKS
     // int x1=200; int y1=HIGHT-100;
     // int x2=500; int y2=HIGHT-500;
-// is working now make some if statements when to use it
 
-    // CASE 3 (x fast, P1 above P2) => not working
-    // int x1=110; int y1=HIGHT-400;
-    // int x2=500; int y2=HIGHT-300;
+    // CASE 3 (x fast, P1 above P2) => WORKS
+    int x1=110; int y1=HIGHT-400;
+    int x2=500; int y2=HIGHT-300;
     
     // CASE 4 (y fast, P1 above P2) => WORKS
-    int x1=100; int y1=HIGHT-500;
-    int x2=300; int y2=HIGHT-100;
+    // int x1=100; int y1=HIGHT-500;
+    // int x2=300; int y2=HIGHT-100;
 
     
     put_cross(&x, x1, y1);
