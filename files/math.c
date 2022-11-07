@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:17:02 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/06 19:35:39 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:33:04 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ float m(t_data *x_data, int case_)
 	m = (x_data->y[1] - x_data->y[0]) / (x_data->x[1] - x_data->x[0]);
 	if (case_ == 2 && m < 0)
 		m *= -1;
-	// if (case_ == 3 && m > 0)
-	// 	m *= -1;
+	if (case_ == 3 && m > 0)
+		m *= -1;
 	return (m);
 }
 
@@ -52,6 +52,8 @@ float b(t_data *x_data, int case_)
 		// if (m_ > 0)
 		// 	m_ *= -1;
 		b = m(x_data, 3) * x_data->x[1] - (HIGHT - x_data->y[1]);
+		if (b<0)
+			b*=-1;
 		return (b);
 	}
 	else 
