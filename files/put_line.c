@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/06 20:16:40 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:35:51 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,29 +232,36 @@ float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
 	// if case 3
 	if (x_data->slow[1] == 121 && slow_factor == 1 && fast_factor == 1)
 	{
-		float m_;
-		m_ = m(x_data, 3);
-		if (m_ < 0)
-			m_ *= -1;
-		float b_ = b(x_data, 3);
-		if (b_ > 0)
-			b_ *= -1;
-		float result_2 = m_ * find_x(x_data, "x1") - b_;
+		// float m_;
+		// m_ = m(x_data, 3);
+		// // if (m_ < 0)
+		// // 	m_ *= -1;
+		// float b_ = b(x_data, 3);
+		// // if (b_ > 0)
+		// // 	b_ *= -1;
+		
+
+		float val = m(x_data, 3) * find_x(x_data, "x1") + b(x_data, 3);
+		
 		// float result_2 = m_ * find_x(x_data, "x1") + b_; // original
-		// float curr_y = HIGHT-find_y(x_data, "y1"); // ori
-		// printf(YEL"curr_y y: %f\ny val: %f\n"RESET, curr_y, result_2);
-		printf(YEL"y_val y: %f\n"RESET, result_2);
+		float curr_y = HIGHT-find_y(x_data, "y1"); // ori
+		printf(YEL"curr_y y: %f\ny val: %f\n"RESET, curr_y, val);
+		float  return_  = curr_y - val;
+		
+		// printf(YEL"y_val y: %f\n"RESET, val);
 		// float result_2 = m_ * x_data->x[1] + b_;
-		int try = result_2;
-		printf("try: %d\n", try);
+		// int try = result_2;
+		// printf("try: %d\n", try);
 		
 		// float curr_y = x_data->y[0];
 		// printf("res:: %f\n\n", curr_y-result_2);
 		// if (curr_y > x_data->y[1])
 		// 	printf(RED"y less then 0\n"RESET);
+		
 		// error_msg("done\n");
-		float return_ = result_2 - (float)try;
-		printf("return val: %f\n\n", return_);
+		// float return_ = result_2 - (float)try;
+		// printf("return val: %f\n\n", return_);
+		
 		return (return_);
 	}
 	// if case 2
@@ -298,26 +305,21 @@ void bresenham_algo(t_data *x_data, int32_t colour)
 	init_direction_speed(x_data);
 	slow_factor = get_slow_factor(x_data);
 	fast_factor = get_fast_factor(x_data);
-	mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
-	print_case(x_data, slow_factor, fast_factor);
-	print_factor(fast_factor, slow_factor);
+	// print_case(x_data, slow_factor, fast_factor);
+	// print_factor(fast_factor, slow_factor);
 	
-	int i = 0;
-	while (i < 400)//reached_second_point(x_data) == false) //
+	while (reached_second_point(x_data) == false)
 	{
-		x_data->fast[0] += fast_factor;
+		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 
 		// if statement asks if the differnce between the last y value and the y value
 		// on the actual line is bigger then 0.5
-		// if ((find_y(x_data, "y1") - (m(x_data) * find_x(x_data, "x1") + b(x_data))) > 0.5)
 		if (distance_to_line(x_data, slow_factor, fast_factor) > 0.5)
 		{
 			x_data->slow[0] += slow_factor;
 		}
-		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
-		i++;
+		x_data->fast[0] += fast_factor;
 	}
-	// mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 }
 	
 // explaination different if-statements:
