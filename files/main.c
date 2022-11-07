@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/07 14:44:00 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 19:26:11 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(void)
     void *mlx = 0;
     void *mlx_win = 0;
     t_data x;
+    t_fdf fdf;
     
     x.mlx = mlx;
     x.mlx_win = mlx_win;
@@ -51,6 +52,8 @@ int main(void)
     init_y(&x, y1, y2);
 
     put_line(&x, 0xeec900);
+    
+    init_matrix(&fdf);
     
     mlx_loop(x.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/07 14:44:49 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:49:00 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,8 +240,7 @@ float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
  * fast and slow direction:
  * - fast/slow[0] is the content of the 'fast' or 'slow' direction (either x or y)
  * - fast/slow[1] is either 120 for 'x' or 121 for 'y'
- *   (check out init_direction_speed() for more information)
- * 			
+ *   (check out init_direction_speed() for more information)	
  */
 void bresenham_algo(t_data *x_data, int32_t colour)
 {

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/06 20:09:29 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 19:59:51 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define WIDHT 1000
 # define HIGHT 1000
+# define BUFFER_SIZE 20
 
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
@@ -22,8 +23,21 @@
 #include <stdio.h>
 # include <stdbool.h>
 
+// open function
+#include <sys/stat.h>
+#include <fcntl.h>
+
 // defines macros for exit func (EXIT_SUCCESS and EXIT_FAILURE)
 # include <stdlib.h>
+
+typedef struct  s_fdf
+{
+	int	**matrix;
+	int *content;
+	int val;
+	
+	struct s_fdf *next;
+}				t_fdf;
 
 typedef struct	s_data
 {
@@ -58,6 +72,20 @@ typedef struct	s_data
 # define RESET "\x1B[0m"
 
 
+//		do_2d.c
+int32_t	**map_split(char  *str, char c);
+int	amount_subs(const char *s, char c);
+int	*sub_dup(char *str, int start, int finish);
+t_fdf	*new_node(int32_t content);
+
+
+//		get_next_line.c
+void	buff_after_line(char *buff);
+char	*create_last(char *buff, char *line);
+char	*get_next_line(int fd);
+
+
+
 //		delete_later_funcs.c
 void put_cross(t_data *x_data,int x, int y);
 void print_case(t_data *x_data, float slow_f, float fast_f);
@@ -66,6 +94,10 @@ void print_factor(float fast_f, float slow_f);
 //		include_libft.c
 size_t	ft_strlen(const char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *str, int c);
+int	ft_atoi(const char *str);
 
 
 //		not_compile_funcs.c

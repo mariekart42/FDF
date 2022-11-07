@@ -6,12 +6,11 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:17:02 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/07 13:33:04 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:45:10 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
-
 /*
  * function calculates the gradient m (y = [m]x+b)
  * 			y2 - y1
@@ -39,7 +38,6 @@ float m(t_data *x_data, int case_)
 float b(t_data *x_data, int case_)
 {
 	float b;
-	// float m_;
 	
 	if (case_ == 1 || case_ == 4)
 	{
@@ -48,19 +46,16 @@ float b(t_data *x_data, int case_)
 	}
 	else if (case_ == 3)
 	{
-		// m_ = m(x_data, 1);
-		// if (m_ > 0)
-		// 	m_ *= -1;
 		b = m(x_data, 3) * x_data->x[1] - (HIGHT - x_data->y[1]);
-		if (b<0)
-			b*=-1;
+		if (b < 0)
+			b *= -1;
 		return (b);
 	}
 	else 
 	{
 		b = m(x_data, 2) * x_data->x[1] - (HIGHT - x_data->y[1]);
-		if (b<0)
-			b*=-1;
+		if (b < 0)
+			b *= -1;
 		return (b);
 	}
 }
