@@ -6,54 +6,77 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/07 19:26:11 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:38:13 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    printf(YEL"\n>------- start -------\n"RESET);
-    void *mlx = 0;
-    void *mlx_win = 0;
-    t_data x;
-    t_fdf fdf;
+    printf(YEL"\n>------- start -------\n\n\n"RESET);
     
-    x.mlx = mlx;
-    x.mlx_win = mlx_win;
+    t_data  data;
+    t_fdf   fdf;
 
-    x.mlx = mlx_init();
-	x.mlx_win = mlx_new_window(x.mlx, WIDHT, HIGHT, "bullshit world!");
-    
+    if (argc != 2)
+        error_msg("input args incorrect! --> usage:  ./exec <map>\n");
 
-    // CASE 1 (x fast, P1 below P2) => WORKS
-    // int x1=100;  int y1=HIGHT-100;
-    // int x2=800;  int y2=HIGHT-300;
+    data.mlx = mlx_init();
+	data.mlx_win = mlx_new_window(data.mlx, WIDHT, HIGHT, "bullshit world!");
     
+    fdf.argv_map = argv[1];
+    printf("argv: %s\n", fdf.argv_map);
     
-    // CASE 2 (y fast, P1 below P2) => WORKS
-    // int x1=200; int y1=HIGHT-100;
-    // int x2=500; int y2=HIGHT-500;
+    argc++;
 
-    // CASE 3 (x fast, P1 above P2) => WORKS
-    int x1=110; int y1=HIGHT-400;
-    int x2=500; int y2=HIGHT-300;
-    
-    // CASE 4 (y fast, P1 above P2) => WORKS
-    // int x1=100; int y1=HIGHT-500;
-    // int x2=300; int y2=HIGHT-100;
-
-    
-    put_cross(&x, x1, y1);
-    put_cross(&x, x2, y2);
-    
-    init_x(&x, x1, x2);
-    init_y(&x, y1, y2);
-
-    put_line(&x, 0xeec900);
-    
     init_matrix(&fdf);
     
-    mlx_loop(x.mlx);
+    printf("map: %s\n", fdf.matrix[0]);
+    printf("map: %s\n", fdf.matrix[1]);
+    printf("map: %s\n", fdf.matrix[2]);
+    printf("map: %s\n", fdf.matrix[3]);
+    printf("map: %s\n", fdf.matrix[4]);
+    printf("map: %s\n", fdf.matrix[5]);
+    printf("map: %s\n", fdf.matrix[6]);
+    printf("map: %s\n", fdf.matrix[7]);
+    printf("map: %s\n", fdf.matrix[8]);
+    printf("map: %s\n", fdf.matrix[9]);
+    printf("map: %s\n", fdf.matrix[10]);
+    printf("map: %s\n", fdf.matrix[11]);
+    printf("map: %s\n", fdf.matrix[12]);
+    printf("map: %s\n", fdf.matrix[13]);
+    printf("map: %s\n", fdf.matrix[14]);
+
+
+    // // CASE 1 (x fast, P1 below P2) => WORKS
+    // // int x1=100;  int y1=HIGHT-100;
+    // // int x2=800;  int y2=HIGHT-300;
+    
+    
+    // // CASE 2 (y fast, P1 below P2) => WORKS
+    // // int x1=200; int y1=HIGHT-100;
+    // // int x2=500; int y2=HIGHT-500;
+
+    // // CASE 3 (x fast, P1 above P2) => WORKS
+    // int x1=110; int y1=HIGHT-400;
+    // int x2=500; int y2=HIGHT-300;
+    
+    // // CASE 4 (y fast, P1 above P2) => WORKS
+    // // int x1=100; int y1=HIGHT-500;
+    // // int x2=300; int y2=HIGHT-100;
+
+    
+    // put_cross(&data, x1, y1);
+    // put_cross(&data, x2, y2);
+    
+    // init_x(&data, x1, x2);
+    // init_y(&data, y1, y2);
+    
+    // put_line(&data, 0xeec900);
+    
+    
+    
+    
+    mlx_loop(data.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/07 19:59:51 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:38:08 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 
 typedef struct  s_fdf
 {
-	int	**matrix;
+	char	**matrix;
 	int *content;
 	int val;
+	char *argv_map;
 	
 	struct s_fdf *next;
 }				t_fdf;
@@ -53,12 +54,8 @@ typedef struct	s_data
     void	*mlx;
 	void	*mlx_win;
     
-	// void	*img;
-	// char	*addr;
-	// int		bits_per_pixel;
-	// int		line_length;
-	// int		endian;
 }				t_data;
+
 
 //colour shit
 # define RED   "\x1B[31m"
@@ -73,10 +70,12 @@ typedef struct	s_data
 
 
 //		do_2d.c
-int32_t	**map_split(char  *str, char c);
-int	amount_subs(const char *s, char c);
-int	*sub_dup(char *str, int start, int finish);
-t_fdf	*new_node(int32_t content);
+// int32_t	**map_split(char  *str, char c);
+// int	amount_subs(const char *s, char c);
+// int	*sub_dup(char *str, int start, int finish);
+// t_fdf	*new_node(int32_t content);
+int32_t wordcount();
+void init_matrix(t_fdf *fdf);
 
 
 //		get_next_line.c
