@@ -7,7 +7,7 @@ SRC =	files/delete_later_funcs.c \
 		files/put_line.c \
 		files/error.c \
 		files/get_next_line.c \
-		files/do_2d.c
+		files/do_3d.c
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
 

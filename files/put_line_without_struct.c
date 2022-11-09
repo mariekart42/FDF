@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_line.c                                         :+:      :+:    :+:   */
+/*   put_line_without_struct.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/09 17:56:49 by mmensing         ###   ########.fr       */
+/*   Created: 2022/11/09 16:48:58 by mmensing          #+#    #+#             */
+/*   Updated: 2022/11/09 16:54:33 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../head/fdf.h"
 #include "../libft/libft.h"
@@ -17,18 +18,18 @@
  * function checks if P1 is always on the right side from P2 (P2 always left side)
  * if that's not the case, the two points swap positions
  */
-void check_koordinates(t_data *data)
+void init_koordinates(t_data *x_data)
 {
 	int32_t	swap_variable;
-	
-	if (data->x[0] > data->x[1])
+
+	if (x_data->x[0] > x_data->x[1])
 	{
-		swap_variable = data->x[0];
-		data->x[0] = data->x[1];
-		data->x[1] = swap_variable;
-		swap_variable = data->y[0];
-		data->y[0] = data->y[1];
-		data->y[1] = swap_variable;
+		swap_variable = x_data->x[0];
+		x_data->x[0] = x_data->x[1];
+		x_data->x[1] = swap_variable;
+		swap_variable = x_data->y[0];
+		x_data->y[0] = x_data->y[1];
+		x_data->y[1] = swap_variable;
 	}
 }
 
@@ -37,14 +38,14 @@ void check_koordinates(t_data *data)
  *   string needs to be "x2"
  * - function returns the x_value that is either fast[0] or slow[0]
  */
-float find_x(t_data *data, char *y1_or_y2)
+float find_x(t_data *x_data, char *y1_or_y2)
 {
 	if (ft_strncmp(y1_or_y2, "x2", 2) == 0)
-		return (data->x[1]);
-	else if (data->slow[1] == 120)
-		return (data->slow[0]);
+		return (x_data->x[1]);
+	else if (x_data->slow[1] == 120)
+		return (x_data->slow[0]);
 	else
-		return (data->fast[0]);
+		return (x_data->fast[0]);
 }
 
 /*
@@ -52,14 +53,14 @@ float find_x(t_data *data, char *y1_or_y2)
  *   string needs to be "y2"
  * - function returns the y_value that is either fast[0] or slow[0]
  */
-float find_y(t_data *data, char *y1_or_y2)
+float find_y(t_data *x_data, char *y1_or_y2)
 {
 	if (ft_strncmp(y1_or_y2, "y2", 2) == 0)
-		return (data->y[1]);
-	else if (data->slow[1] == 121)
-		return (data->slow[0]);
+		return (x_data->y[1]);
+	else if (x_data->slow[1] == 121)
+		return (x_data->slow[0]);
 	else
-		return (data->fast[0]);
+		return (x_data->fast[0]);
 }
 
 /*
@@ -67,9 +68,9 @@ float find_y(t_data *data, char *y1_or_y2)
  * are identical with the second Point (end-point)
  * reutrns false if not
  */
-bool reached_second_point(t_data *data)
+bool reached_second_point(t_data *x_data)
 {
-	if (find_x(data, "x1") == data->x[1] && find_y(data, "y1") == data->y[1])
+	if (find_x(x_data, "x1") == x_data->x[1] && find_y(x_data, "y1") == x_data->y[1])
 		return (true);
 	else
 		return (false);
@@ -92,7 +93,7 @@ bool reached_second_point(t_data *data)
  * fast/slow[0] is the content of the 'fast' or 'slow' direction (either x or y)
  * fast/slow[1] is either 120 for 'x' or 121 for 'y'
  */
-void init_direction_speed(t_data *data)
+void init_direction_speed(t_data *x_data)
 {
 	float tmp_x;
 	float tmp_y;
@@ -100,8 +101,8 @@ void init_direction_speed(t_data *data)
 	// init difference of both Points to tmp, 
 	// if val is negative -> make pos 
 	// (cause comparing diferences only works with pos numbers)
-	tmp_x = data->x[1] - data->x[0];
-	tmp_y = data->y[1] - data->y[0];
+	tmp_x = x_data->x[1] - x_data->x[0];
+	tmp_y = x_data->y[1] - x_data->y[0];
 	if (tmp_x < 0)
 		tmp_x *= -1;
 	if (tmp_y < 0)
@@ -111,18 +112,18 @@ void init_direction_speed(t_data *data)
 	if (tmp_x >= tmp_y)
 	{
 		printf("direction_speed: "YEL "x\n"RESET);
-		data->slow[0] = data->y[0];
-		data->slow[1] = 121;
-		data->fast[0] = data->x[0];
-		data->fast[1] = 120;
+		x_data->slow[0] = x_data->y[0];
+		x_data->slow[1] = 121;
+		x_data->fast[0] = x_data->x[0];
+		x_data->fast[1] = 120;
 	}
 	else // else y is the fast direction and x slow
 	{
 		printf("direction_speed: "YEL "y\n"RESET);
-		data->slow[0] = data->x[0];
-		data->slow[1] = 120;
-		data->fast[0] = data->y[0];
-		data->fast[1] = 121;
+		x_data->slow[0] = x_data->x[0];
+		x_data->slow[1] = 120;
+		x_data->fast[0] = x_data->y[0];
+		x_data->fast[1] = 121;
 	}
 }
 
@@ -148,14 +149,14 @@ void init_direction_speed(t_data *data)
  * 	  needs to get added 					 one to reach P2
  *    by 1 to reach P2
  */
-float get_slow_factor(t_data *data)
+float get_slow_factor(t_data *x_data)
 {
-	if (data->slow[1] == 120)
+	if (x_data->slow[1] == 120)
 		return (1);
-	else if (data->slow[1] == 121 && data->y[0] > data->y[1])
+	else if (x_data->slow[1] == 121 && x_data->y[0] > x_data->y[1])
 		return (-1);
 	// case 3
-	if (data->slow[1] == 121 && data->y[0] < data->y[1])
+	if (x_data->slow[1] == 121 && x_data->y[0] < x_data->y[1])
 		return (1);
 	else
 		error_msg("not able to access slow_factor ---> exit here\n");
@@ -166,15 +167,15 @@ float get_slow_factor(t_data *data)
  * same as get_slow_fatcor() but for the fast factor
  * check out get_slow_factor() for more information
  */
-float get_fast_factor(t_data *data)
+float get_fast_factor(t_data *x_data)
 {
 		
 	// orig
-	if (data->fast[1] == 120)
+	if (x_data->fast[1] == 120)
 		return (1);
-	else if (data->fast[1] == 121 && data->y[0] > data->y[1])
+	else if (x_data->fast[1] == 121 && x_data->y[0] > x_data->y[1])
 		return (-1);
-	else if (data->fast[1] == 121 && data->y[0] < data->y[1])
+	else if (x_data->fast[1] == 121 && x_data->y[0] < x_data->y[1])
 		return (1);
 	else
 		error_msg("not able to access fast_factor ---> exit here\n");
@@ -210,22 +211,22 @@ float get_fast_factor(t_data *data)
  *    0 1 2 3 4 5 6 7 		   |    0 1 2 3 4 5 6 7
  * 		=> x = [y-b]/m		   | 	  => y = mx+b	
  */
-float distance_to_line(t_data *data, float slow_factor, float fast_factor)
+float distance_to_line(t_data *x_data, float slow_factor, float fast_factor)
 {
 	// if case 1 or 4
-	if ((data->slow[1] == 121 && slow_factor == -1 && fast_factor == 1) \
-		|| (data->slow[1] == 120 && slow_factor == 1 && fast_factor == 1))
-		return (find_y(data, "y1") - (m(data, 1) * find_x(data, "x1") + b(data, 1)));
+	if ((x_data->slow[1] == 121 && slow_factor == -1 && fast_factor == 1) \
+		|| (x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == 1))
+		return (find_y(x_data, "y1") - (m(x_data, 1) * find_x(x_data, "x1") + b(x_data, 1)));
 
 	// if case 3
-	if (data->slow[1] == 121 && slow_factor == 1 && fast_factor == 1)
+	if (x_data->slow[1] == 121 && slow_factor == 1 && fast_factor == 1)
 	{
-		return ((HIGHT-find_y(data, "y1")) - (m(data, 3) * find_x(data, "x1") + b(data, 3)));
+		return ((HIGHT-find_y(x_data, "y1")) - (m(x_data, 3) * find_x(x_data, "x1") + b(x_data, 3)));
 	}
 	// if case 2
-	if (data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1)
+	if (x_data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1)
 	{
-		return (((HIGHT - find_y(data, "y1") + b(data, 2)) / m(data, 2)) - find_x(data, "x1"));
+		return (((HIGHT - find_y(x_data, "y1") + b(x_data, 2)) / m(x_data, 2)) - find_x(x_data, "x1"));
 	}
 	else
 		error_msg("failed to execute distance_to_line\n");
@@ -247,26 +248,24 @@ void bresenham_algo(t_data *data)
 	float	slow_factor;
 	float	fast_factor;
 
- // streich holz schächtel chen
-
-	check_koordinates(data);
+	init_koordinates(data);
 	init_direction_speed(data);
-	slow_factor = get_slow_factor(data);
-	fast_factor = get_fast_factor(data);
-	// print_case(data, slow_factor, fast_factor);
+	slow_factor = get_slow_factor(x_data);
+	fast_factor = get_fast_factor(x_data);
+	// print_case(x_data, slow_factor, fast_factor);
 	// print_factor(fast_factor, slow_factor);
 	
-	while (reached_second_point(data) == false)
+	while (reached_second_point(x_data) == false)
 	{
-		data->fast[0] += fast_factor;
+		x_data->fast[0] += fast_factor;
 
 		// if statement asks if the differnce between the last y value and the y value
 		// on the actual line is bigger then 0.5
-		if (distance_to_line(data, slow_factor, fast_factor) > 0.5)
+		if (distance_to_line(x_data, slow_factor, fast_factor) > 0.5)
 		{
-			data->slow[0] += slow_factor;
+			x_data->slow[0] += slow_factor;
 		}
-		mlx_pixel_put(data->mlx, data->mlx_win, find_x(data, "x1"), find_y(data, "y1"), data->colour);
+		mlx_pixel_put(x_data->mlx, x_data->mlx_win, find_x(x_data, "x1"), find_y(x_data, "y1"), colour);
 	}
 }
 	
@@ -275,15 +274,14 @@ void bresenham_algo(t_data *data)
 // 2. if both dots have the same x-val -> its just a vertical line
 // 3. if both dots have the same y-val -> its just a horizontal line
 // 4. else we need to put the line with the bresenham algo
-void put_line(t_data *data)
+void put_line(t_data *data, int32_t x1, int32_t x2, int32_t y1, int32_t y2)
 {
-	// update following 3 functions for colour in struct now
-	if (data->x[0] == data->x[1] && data->y[0] == data->y[1])
-		mlx_pixel_put(data->mlx, data->mlx_win, data->x[0], data->y[0], data->colour);
-	else if (data->x[0] == data->x[1])
-		put_vertical_line(data);
-	else if (data->y[0] == data->y[1])
-		put_horizontal_line(data);
+	if (x1 == x2 && y1 == y2)
+		mlx_pixel_put(data->mlx, x_data->mlx_win, x1, y1, data->colour);
+	else if (x1 == x2)
+		put_vertical_line(data, data->colour);
+	else if (y1 == y2)
+		put_horizontal_line(data, data->colour);
 	else
 		bresenham_algo(data);
 		

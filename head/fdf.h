@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/09 14:43:51 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:36:38 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct	s_data
     float     x[2];
     float     y[2];
 	
-	
+	int32_t colour;
 	// put line
 	float	slow[2];
 	float fast[2];
@@ -70,13 +70,11 @@ typedef struct	s_data
 
 
 //		do_2d.c
-// int32_t	**map_split(char  *str, char c);
-// int	amount_subs(const char *s, char c);
-// int	*sub_dup(char *str, int start, int finish);
-// t_fdf	*new_node(int32_t content);
-// int32_t wordcount();
 int32_t linecount(char *argv_map);
 void init_matrix(t_fdf *fdf);
+
+
+//		do_3d.c
 
 
 //		get_next_line.c
@@ -111,23 +109,23 @@ float b(t_data *x_data, int case_);
 
 
 //		test_mlx.c
-void init_y(t_data *x_data, int y1, int y2);
-void init_x(t_data *x_data, int x1, int x2);
-void put_vertical_line(t_data *x_data, int colour);
-void put_horizontal_line(t_data *x_data, int colour);
+void init_y(t_data *data, int32_t y1, int32_t y2);
+void init_x(t_data *data, int32_t x1, int32_t x2);
+void put_vertical_line(t_data *data);
+void put_horizontal_line(t_data *data);
 
 
 //		put_line.c
-// float get_go_factor(t_data *x_data);
-float get_slow_factor(t_data *x_data);
-float get_fast_factor(t_data *x_data);
-void init_koordinates(t_data *x_data);
-float find_x(t_data *x_data, char *y1_or_y2);
-float find_y(t_data *x_data, char *y1_or_y2);
-bool reached_second_point(t_data *x_data);
-void init_direction_speed(t_data *x_data);
-void bresenham_algo(t_data *x_data, int32_t colour);
-void put_line(t_data *x_data, int32_t colour);
+void check_koordinates(t_data *data);
+float find_x(t_data *data, char *y1_or_y2);
+float find_y(t_data *data, char *y1_or_y2);
+bool reached_second_point(t_data *data);
+void init_direction_speed(t_data *data);
+float get_slow_factor(t_data *data);
+float get_fast_factor(t_data *data);
+float distance_to_line(t_data *data, float slow_factor, float fast_factor);
+void bresenham_algo(t_data *data);
+void put_line(t_data *data);
 
 
 //		error.c

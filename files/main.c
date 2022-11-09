@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/09 16:20:54 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:37:20 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int main(int argc, char *argv[])
     
     argc++;
 
+    data.colour = 0xfff8dc;
     init_matrix(&fdf);
-    draw_map(&fdf);
+    draw_2d_rasta(&fdf, &data);
+    // draw_map(&fdf, &data);
     
 
     printf("map: %s\n", fdf.matrix[0]);
@@ -72,7 +74,7 @@ int main(int argc, char *argv[])
     // init_x(&data, x1, x2);
     // init_y(&data, y1, y2);
     
-    put_line(&data, 0xeec900);
+    // put_line(&data);
     
     
     
