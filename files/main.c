@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/08 14:38:13 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:20:54 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int main(int argc, char *argv[])
     argc++;
 
     init_matrix(&fdf);
+    draw_map(&fdf);
     
+
     printf("map: %s\n", fdf.matrix[0]);
     printf("map: %s\n", fdf.matrix[1]);
     printf("map: %s\n", fdf.matrix[2]);
@@ -44,9 +46,6 @@ int main(int argc, char *argv[])
     printf("map: %s\n", fdf.matrix[9]);
     printf("map: %s\n", fdf.matrix[10]);
     printf("map: %s\n", fdf.matrix[11]);
-    printf("map: %s\n", fdf.matrix[12]);
-    printf("map: %s\n", fdf.matrix[13]);
-    printf("map: %s\n", fdf.matrix[14]);
 
 
     // // CASE 1 (x fast, P1 below P2) => WORKS
@@ -73,7 +72,7 @@ int main(int argc, char *argv[])
     // init_x(&data, x1, x2);
     // init_y(&data, y1, y2);
     
-    // put_line(&data, 0xeec900);
+    put_line(&data, 0xeec900);
     
     
     

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/08 14:38:08 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:43:51 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ typedef struct	s_data
 // int	amount_subs(const char *s, char c);
 // int	*sub_dup(char *str, int start, int finish);
 // t_fdf	*new_node(int32_t content);
-int32_t wordcount();
+// int32_t wordcount();
+int32_t linecount(char *argv_map);
 void init_matrix(t_fdf *fdf);
 
 
