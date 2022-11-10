@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/09 18:36:38 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:17:03 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@
 # define WIDHT 1000
 # define HIGHT 1000
 # define BUFFER_SIZE 20
+# define START_POINT 100
+# define LINE_LEN 10
+
+# define ANGLE 0.8
+// # define ANGLE 0.46373398 //what redhead used
 
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
 # include <stdbool.h>
+
+// cos and sin
+#include <math.h>
 
 // open function
 #include <sys/stat.h>
@@ -33,7 +41,14 @@
 typedef struct  s_fdf
 {
 	char	**matrix;
-	int *content;
+	// float	current_x;
+	// float	current_y;
+	// float	next_x;
+	// float	next_y;
+
+
+	// char	**map;
+	// int *content;
 	int val;
 	char *argv_map;
 	
@@ -69,13 +84,14 @@ typedef struct	s_data
 # define RESET "\x1B[0m"
 
 
-//		do_2d.c
+//		do_3d.c
+float isometric(float x, float y, int32_t z, char x_or_y);
 int32_t linecount(char *argv_map);
 void init_matrix(t_fdf *fdf);
 
 
-//		do_3d.c
-
+// 		draw_map.c
+void draw_map(t_data *data, t_fdf *fdf);
 
 //		get_next_line.c
 void	buff_after_line(char *buff);
@@ -126,6 +142,7 @@ float get_fast_factor(t_data *data);
 float distance_to_line(t_data *data, float slow_factor, float fast_factor);
 void bresenham_algo(t_data *data);
 void put_line(t_data *data);
+void init_put_line(float x1, float x2, float y1, float y2);
 
 
 //		error.c

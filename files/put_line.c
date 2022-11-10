@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/09 17:56:49 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:09:43 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,8 @@ void bresenham_algo(t_data *data)
 	float	fast_factor;
 
  // streich holz schächtel chen
-
+	// init_coordinates(data);
+	
 	check_koordinates(data);
 	init_direction_speed(data);
 	slow_factor = get_slow_factor(data);
@@ -288,4 +289,14 @@ void put_line(t_data *data)
 		bresenham_algo(data);
 		
 printf(GRN "--> done\n" RESET);
+}
+
+void init_put_line(float x1, float x2, float y1, float y2)
+{
+	t_data tmp;
+	
+	tmp.x[0] = x1;
+	tmp.x[1] = x2;
+	tmp.y[0] = y1;
+	tmp.y[1] = y2;
 }
