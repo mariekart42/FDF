@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:08:14 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/10 16:16:36 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:01:31 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void draw_map(t_data *data, t_fdf *fdf)
 
 // display tile
 	
-	init_put_line(START_POINT, isometric(1+LINE_LEN, 1+LINE_LEN, fdf->matrix[0][1], 'x'), START_POINT, isometric(1+LINE_LEN, 1+LINE_LEN, fdf->matrix[0][1], 'y'));
+	init_put_line(START_POINT, isometric(1+LINE_LEN, 1+LINE_LEN, fdf->matrix[0][1], 'x'), START_POINT, START_POINT);
+	put_line(data);
+	
+	init_put_line(START_POINT, START_POINT, START_POINT, isometric(1+LINE_LEN, 1+LINE_LEN, fdf->matrix[0][1], 'x'));
 	put_line(data);
 
 

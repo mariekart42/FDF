@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/10 16:20:00 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:02:12 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int main(int argc, char *argv[])
     data.x[0] = 10;
     data.y[0] = 10;
     
-    // init_matrix(&fdf);
+    init_matrix(&fdf);
     
     // draw_2d_rasta(&fdf, &data);
-    // draw_map(&data, &fdf);
+    draw_map(&data, &fdf);
     
 
     // printf("map: %s\n", fdf.map[0]);
@@ -74,17 +74,17 @@ int main(int argc, char *argv[])
 
 
 
-    int x1=12; int y1=HIGHT-80;
-    int x2=991; int y2=HIGHT-41;
+    // int x1=12; int y1=HIGHT-80;
+    // int x2=991; int y2=HIGHT-41;
 
     
-    put_cross(&data, x1, y1);
-    put_cross(&data, x2, y2);
+    // put_cross(&data, x1, y1);
+    // put_cross(&data, x2, y2);
     
-    init_x(&data, x1, x2);
-    init_y(&data, y1, y2);
+    // init_x(&data, x1, x2);
+    // init_y(&data, y1, y2);
     
-    put_line(&data);
+    // put_line(&data);
     
     
     
