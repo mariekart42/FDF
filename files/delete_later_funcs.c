@@ -11,7 +11,7 @@ void put_cross(t_data *x_data,int x, int y)
 	
 	save_x = x;
 	save_y = y;
-	len = 3;
+	len = 4;
 	len++;
 	minus_len = len * (-1);
 	x += len;
@@ -20,8 +20,8 @@ void put_cross(t_data *x_data,int x, int y)
 	{
 		x -= 1;
 		y += 1;
-		mlx_pixel_put(x_data->mlx, x_data->mlx_win, x, y, 0xee6a50);
-		mlx_pixel_put(x_data->mlx, x_data->mlx_win, x, y - 2 + (len * 2), 0xee6a50);
+		mlx_pixel_put(x_data->mlx, x_data->mlx_win, x, y, x_data->cross_colour);
+		mlx_pixel_put(x_data->mlx, x_data->mlx_win, x, y - 2 + (len * 2), x_data->cross_colour);
 		len--;
 	}
 	// middle point
