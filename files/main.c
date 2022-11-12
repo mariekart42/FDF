@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/12 00:54:52 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:17:52 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
     
     data.colour = 0xffefd5;
-    func(&data, 1, 0, 0);
+    func_(&fdf, &data, 0, 0, 0);
     // isometric(&data, 20, 10, 1);
     data.colour = 0xffffff;
     // isometric(&data, 30, 10, 1);
@@ -109,9 +109,9 @@ int main(int argc, char *argv[])
     
     
     // START_POINT
-    data.cross_colour = 0x90ee90;
+    // data.cross_colour = 0x90ee90;
+    // put_cross(&data, START_POINT_X, START_POINT_Y);
     put_cross(&data, START_POINT_X, START_POINT_Y);
-    
     mlx_loop(data.mlx);
 }
 

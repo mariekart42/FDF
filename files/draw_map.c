@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:08:14 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/12 01:05:16 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:00:35 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,99 +28,117 @@
 // sin = (0.5235987756)  (1.5/-1)  -> for upper line
 // cos = (0.46373398)    (1/0.5)  -> for above line
 
-void func(t_data *data, int32_t x, int32_t y, int32_t z)
+// void func(t_data *data, int32_t x, int32_t y, int32_t z)
+// {
+// 	// to get val of y-axe:
+// 	float y_axe;
+// y++;
+// z++;
+// 	y_axe = (x * 0.5) * cos(0.5);
+// 	init_x(data, START_POINT_X, x*100);
+// 	init_y(data, START_POINT_Y, y_axe*100);
+// 	put_line(data);
+// }
+
+
+// calculates direction of the two vectors
+// depends on the number of lines and colomns of the map
+void init_vectors(t_fdf *fdf)
 {
-	// to get val of y-axe:
-	float y_axe;
-y++;
-z++;
-	y_axe = (x * 0.5) * cos(0.5);
-	init_x(data, START_POINT_X, x*100);
-	init_y(data, START_POINT_Y, y_axe*100);
-	put_line(data);
+	// now just fix it but later calculate it:
+
+	fdf->y_vector = 0.5;
+	fdf->x_vector = -0.76666644726;
 }
 
-
-
-
-
-
-// void isometric(t_data *data, float x, float y, int32_t z)
+// calculates the size of the tile len depending on the size of the window
+// float single_tile_size(t_fdf *fdf)
 // {
-//     float previous_x;
-//     float previous_y;
-
-//     previous_x = x;
-//     previous_y =y;
-
-
-//     x = (previous_x + previous_y) * cos(0.46373398);
-//     y = -z + (previous_x + previous_y) * sin(0.5235987756);
-	
-// 	init_x(data, previous_x, x);
-// 	init_y(data, previous_y, y);
-// 	put_cross(data, previous_x, previous_y);
-// 	put_cross(data, x, y);
-// 	put_line(data);
-// 	// if (x_or_y == 'x')
-// 	// 	return (x);
-// 	// return (y);
-		
+// 	// now just fix it but later calculate it:
+// 	return (50);
 // }
 
+// here actually draw the tile
+void func_(t_fdf *fdf, t_data *data, int32_t x_, int32_t y_, int32_t z_)
+{
+	init_x(data, 0, 700);
+	init_y(data, START_POINT_Y, START_POINT_Y);
+	// put_horizontal_line(data);
 
-// // init current and next x and y values
-// // in data x and y there needs to be the correct calculared values(with angle)
-// void init_coords(t_data *fdf, t_data *data)
-// {	
-// 	// always previouse coordinates
-// 	data->x[0] = data->x[1];
-// 	data->y[0] = data->y[1];
+
+	init_vectors(fdf);
+	data->cross_colour = 0xcd5c5c;
+	put_cross(data, START_POINT_X, START_POINT_Y);
 	
-// 	data->x[1] = 
-// 	data->y[1] =
-// }
-
-// void first_line(t_fdf *fdf, t_data *data)
-// {
-// 	data->x[0] = START_POINT;
-// 	data->y[0] = START_POINT;
-// 	data->x[1] = START_POINT;
+	// ( (x * vector)			=> origin is at (0/0) ! normal coordinatesystem)
+	// ( (x * vector) + val		=> origin is at (0/0) PLUS moved upwards -> for weird coordinatsystem '-' the val)
 	
-// 	data->y[1] = isometric(START_POINT, LINE_LEN, fdf->matrix[0][1], 'y');
-// }
+// moves the coordinates up(negative val) and down(positive val)
+float move_up_down = START_POINT_Y;
 
-// void draw_map(t_data *data, t_fdf *fdf)
-// {
-// 	// int32_t i = 0;
-// 	// int32_t line = 0;
-// 	// int32_t col = 0;
+// move the coordinates left and rigth
+// for moving left and right only the x val needs to chang
+float move_left_right = START_POINT_X;
+
+// factor that increases the len of the line of a tile (x_ * line_len)
+float line_len = 50;
+
+	z_++;
+
+	y_++;
+
 	
-// 	// first_line(fdf, data);
-// 	// put_line(data);
-// 	// data->x[0] = START_POINT;
-// 	// data->y[0] = START_POINT;
-
-// // display tile
+	//---------------------------------------------------------------------------------------------
+	// y line:
+	data->cross_colour = 0xffff00;
+	x_ = 0;
+	put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->y_vector));
+	// put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->x_vector));
 	
-// 	// init_put_line(START_POINT, isometric(1+LINE_LEN, 1+LINE_LEN, fdf->matrix[2][5], 'x'), START_POINT, START_POINT);
-// 	// put_line(data);
 	
-// 	// init_put_line(START_POINT, START_POINT, START_POINT, isometric(1+LINE_LEN, 1+LINE_LEN, fdf->matrix[0][1], 'y'));
-// 	// put_line(data);
+	x_ = 1;
+	put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->y_vector));
+	// put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->x_vector));
+	
+init_x(data, move_left_right+ 0 * line_len, move_left_right+ 1 * line_len);
+init_y(data, move_up_down + 0 * line_len * fdf->y_vector, move_up_down + 1 * line_len * fdf->y_vector);
+	put_line(data);
 
 
 
+	x_ = 2;
+	put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->y_vector));
+	// put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->x_vector));
+	
 
-// 	// while (fdf->matrix[line] != NULL)
-// 	// {
-// 	// 	while (fdf->matrix[line][col] != '\0')
-// 	// 	{
-// 	// 		init_coords(fdf, data);
-// 	// 		put_line(data);
-// 	// 		col++;
-// 	// 	}
-// 	// 	col = 0;
-// 	// 	line++;
-// 	// }
-// }
+	x_ = 3;
+	put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->y_vector));
+	// put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->x_vector));
+	//---------------------------------------------------------------------------------------------
+	
+	
+	// //---------------------------------------------------------------------------------------------
+	// // x line:
+	// data->cross_colour = 0x2e8b57;
+	// y_ = 0;
+	// x_ = 0;
+	// // put_cross(data, move_left_right+ x_ * line_len, (move_up_down + x_ * line_len * fdf->y_vector));
+	// put_cross(data, move_left_right+ x_ * line_len, move_up_down + x_ * fdf->y_vector);
+	// x_ = 1;
+	// y_ = 1;
+	// put_cross(data, move_left_right+ x_ * line_len, move_up_down + x_ * fdf->y_vector);
+	// x_ = 2;
+	// y_ = 2;
+	// put_cross(data, move_left_right+ x_ * line_len, move_up_down + x_ * fdf->y_vector);
+	// x_ = 3;
+	// y_ = 3;
+	// put_cross(data, move_left_right+ x_ * line_len, move_up_down + x_ * fdf->y_vector);
+	
+	
+
+
+	//---------------------------------------------------------------------------------------------
+	// init_x(data, START_POINT_X, fdf->x_vector*START_POINT_X);
+	// init_y(data, START_POINT_Y, fdf->y_vector*START_POINT_Y);
+	// put_line(data);
+}

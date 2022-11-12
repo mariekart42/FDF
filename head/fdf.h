@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/12 00:57:04 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:51:05 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define HIGHT 1000
 # define BUFFER_SIZE 20
 
-# define START_POINT_X 100
-# define START_POINT_Y 900
+# define START_POINT_X 200
+# define START_POINT_Y 600
 
 # define LINE_LEN 5
 
@@ -49,9 +49,9 @@ typedef struct  s_fdf
 	// float	next_x;
 	// float	next_y;
 
+	float y_vector;
+	float x_vector;
 
-	// char	**map;
-	// int *content;
 	int val;
 	char *argv_map;
 	
@@ -94,9 +94,9 @@ void init_matrix(t_fdf *fdf);
 
 
 // 		draw_map.c
-void draw_map(t_data *data, t_fdf *fdf);
-void isometric(t_data *data, float x, float y, int32_t z);
 void func(t_data *data, int32_t x, int32_t y, int32_t z);
+void init_vectors(t_fdf *fdf);
+void func_(t_fdf *fdf, t_data *data, int32_t x_, int32_t y_, int32_t z_);
 
 
 
