@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/11 12:23:52 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:57:04 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ void init_matrix(t_fdf *fdf);
 // 		draw_map.c
 void draw_map(t_data *data, t_fdf *fdf);
 void isometric(t_data *data, float x, float y, int32_t z);
+void func(t_data *data, int32_t x, int32_t y, int32_t z);
+
+
 
 //		get_next_line.c
 void	buff_after_line(char *buff);

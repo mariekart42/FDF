@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:08:14 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/11 19:35:55 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/12 01:05:16 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,46 @@
 // calculated sin & cos:
 // sin = (0.5235987756)  (1.5/-1)  -> for upper line
 // cos = (0.46373398)    (1/0.5)  -> for above line
-void isometric(t_data *data, float x, float y, int32_t z)
+
+void func(t_data *data, int32_t x, int32_t y, int32_t z)
 {
-    float previous_x;
-    float previous_y;
-
-    previous_x = x;
-    previous_y =y;
-
-
-    // x = (previous_x + previous_y) * sin(0.46373398);
-    // y = (previous_x - previous_y) * cos(0.46373398);
-
-    x = (previous_x + previous_y) * cos(0.46373398);
-    y = -z + (previous_x + previous_y) * sin(0.5235987756);
-	
-	init_x(data, previous_x, x);
-	init_y(data, previous_y, y);
-	put_cross(data, previous_x, previous_y);
-	put_cross(data, x, y);
+	// to get val of y-axe:
+	float y_axe;
+y++;
+z++;
+	y_axe = (x * 0.5) * cos(0.5);
+	init_x(data, START_POINT_X, x*100);
+	init_y(data, START_POINT_Y, y_axe*100);
 	put_line(data);
-	// if (x_or_y == 'x')
-	// 	return (x);
-	// return (y);
-		
 }
+
+
+
+
+
+
+// void isometric(t_data *data, float x, float y, int32_t z)
+// {
+//     float previous_x;
+//     float previous_y;
+
+//     previous_x = x;
+//     previous_y =y;
+
+
+//     x = (previous_x + previous_y) * cos(0.46373398);
+//     y = -z + (previous_x + previous_y) * sin(0.5235987756);
+	
+// 	init_x(data, previous_x, x);
+// 	init_y(data, previous_y, y);
+// 	put_cross(data, previous_x, previous_y);
+// 	put_cross(data, x, y);
+// 	put_line(data);
+// 	// if (x_or_y == 'x')
+// 	// 	return (x);
+// 	// return (y);
+		
+// }
 
 
 // // init current and next x and y values

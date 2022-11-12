@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/11 17:23:45 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:54:52 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ int main(int argc, char *argv[])
 
     
     data.colour = 0xffefd5;
-    isometric(&data, 20, 10, 1);
+    func(&data, 1, 0, 0);
+    // isometric(&data, 20, 10, 1);
     data.colour = 0xffffff;
-    isometric(&data, 30, 10, 1);
+    // isometric(&data, 30, 10, 1);
     // isometric(&data, 1, 2, 2);
     // isometric(&data, 1, 3, 3);
     // isometric(&data, 1, 4, 4);
@@ -49,7 +50,7 @@ int main(int argc, char *argv[])
     // isometric(&data, 1, 6, 6);
     
     data.colour = 0x708090; //grey
-    isometric(&data, 10, 990, 60);
+    // isometric(&data, 10, 990, 60);
     // isometric(&data, 100, 900, 40);
     // isometric(&data, 100, 900, 50);
     // isometric(&data, 100, 900, 60);
