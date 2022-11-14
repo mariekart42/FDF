@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/12 18:51:05 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:36:23 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void init_matrix(t_fdf *fdf);
 void func(t_data *data, int32_t x, int32_t y, int32_t z);
 void init_vectors(t_fdf *fdf);
 void func_(t_fdf *fdf, t_data *data, int32_t x_, int32_t y_, int32_t z_);
+void print_grit(t_data *data, t_fdf *fdf);
+void print_coordinate(t_data *data, t_fdf *fdf, int32_t x, int32_t y, int32_t z);
 
 
 

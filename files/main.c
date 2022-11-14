@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/12 18:17:52 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:39:33 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,18 @@ int main(int argc, char *argv[])
     // init_matrix(&fdf);
     
 
-    
     data.colour = 0xffefd5;
-    func_(&fdf, &data, 0, 0, 0);
+    init_vectors(&fdf);
+    print_coordinate(&data, &fdf, 0, 0, 0);
+    print_coordinate(&data, &fdf, 1, 1, 0);
+    print_coordinate(&data, &fdf, 2, 1, 0);
+    print_coordinate(&data, &fdf, 3, 1, 0);
+    print_coordinate(&data, &fdf, 4, 2, 0);
+    print_coordinate(&data, &fdf, 5, 2, 0);
+    
+    // func_(&fdf, &data, 0, 0, 0);
+    
+    // print_grit(&data, &fdf);
     // isometric(&data, 20, 10, 1);
     data.colour = 0xffffff;
     // isometric(&data, 30, 10, 1);
