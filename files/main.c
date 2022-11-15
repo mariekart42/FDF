@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/14 14:39:33 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:38:32 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,63 +31,36 @@ int main(int argc, char *argv[])
     argc++;
 
     
-
     data.cross_colour = 0xff6347;
-    
-    // init_matrix(&fdf);
-    
+        
 
     data.colour = 0xffefd5;
-    init_vectors(&fdf);
-    print_coordinate(&data, &fdf, 0, 0, 0);
-    print_coordinate(&data, &fdf, 1, 1, 0);
-    print_coordinate(&data, &fdf, 2, 1, 0);
-    print_coordinate(&data, &fdf, 3, 1, 0);
-    print_coordinate(&data, &fdf, 4, 2, 0);
-    print_coordinate(&data, &fdf, 5, 2, 0);
+    init_matrix(&fdf);
+    init_points(&fdf, &data);
+
+
+
+    
+    // print_coordinate(&data, &fdf, 0, 0, 0);
+    data.colour = 0xffefd5;
+    // print_coordinate(&data, &fdf, 0, 0, 0);
+
     
     // func_(&fdf, &data, 0, 0, 0);
     
     // print_grit(&data, &fdf);
-    // isometric(&data, 20, 10, 1);
+
     data.colour = 0xffffff;
-    // isometric(&data, 30, 10, 1);
-    // isometric(&data, 1, 2, 2);
-    // isometric(&data, 1, 3, 3);
-    // isometric(&data, 1, 4, 4);
-    // isometric(&data, 1, 5, 5);
-    // isometric(&data, 1, 6, 6);
+
     
     data.colour = 0x708090; //grey
-    // isometric(&data, 10, 990, 60);
-    // isometric(&data, 100, 900, 40);
-    // isometric(&data, 100, 900, 50);
-    // isometric(&data, 100, 900, 60);
-    // isometric(&data, 100, 900, 70);
-    // isometric(&data, 100, 900, 80);
-    // isometric(&data, 100, 900, 90);
-    // draw_2d_rasta(&fdf, &data);
-    // draw_map(&data, &fdf);
-    
 
-    // printf("map: %s\n", fdf.matrix[0]);
-    // printf("map: %s\n", fdf.matrix[1]);
-    // printf("map: %s\n", fdf.matrix[2]);
-    // printf("map: %s\n", fdf.matrix[3]);
-    // printf("map: %s\n", fdf.matrix[4]);
-    // printf("map: %s\n", fdf.matrix[5]);
-    // printf("map: %s\n", fdf.matrix[6]);
-    // printf("map: %s\n", fdf.matrix[7]);
-    // printf("map: %s\n", fdf.matrix[8]);
-    // printf("map: %s\n", fdf.matrix[9]);
-    // printf("map: %s\n", fdf.matrix[10]);
-    // printf("map: %s\n", fdf.map[11]);
+
 
 
     // // CASE 1 (x fast, P1 below P2) => WORKS
     // // int x1=100;  int y1=HIGHT-100;
     // // int x2=800;  int y2=HIGHT-300;
-    
     
     // // CASE 2 (y fast, P1 below P2) => WORKS
     // // int x1=200; int y1=HIGHT-100;
@@ -101,26 +74,17 @@ int main(int argc, char *argv[])
     // // int x1=100; int y1=HIGHT-500;
     // // int x2=300; int y2=HIGHT-100;
 
-
-
     // int x1=12; int y1=HIGHT-80;
     // int x2=991; int y2=HIGHT-41;
 
-    
     // put_cross(&data, x1, y1);
     // put_cross(&data, x2, y2);
     
     // init_x(&data, x1, x2);
     // init_y(&data, y1, y2);
     
-    // put_line(&data);
-    
-    
-    
-    // START_POINT
-    // data.cross_colour = 0x90ee90;
+
     // put_cross(&data, START_POINT_X, START_POINT_Y);
-    put_cross(&data, START_POINT_X, START_POINT_Y);
     mlx_loop(data.mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/14 14:36:23 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:52:32 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@
 # define START_POINT_X 200
 # define START_POINT_Y 600
 
-# define LINE_LEN 5
-
-# define ANGLE 0.8
-// # define ANGLE 0.46373398 //what redhead used
+# define LINE_LEN 300
+# define ANGLE 0.5
 
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
@@ -44,11 +42,11 @@
 typedef struct  s_fdf
 {
 	char	**matrix;
-	// float	current_x;
-	// float	current_y;
-	// float	next_x;
-	// float	next_y;
 
+	float curr_point[3];
+	float right_point[3];
+	float lower_point[3];
+	
 	float y_vector;
 	float x_vector;
 
@@ -88,7 +86,16 @@ typedef struct	s_data
 # define RESET "\x1B[0m"
 
 
-//		do_3d.c
+//		init_points.c
+void init_current_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
+void init_lower_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
+void init_next_right_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
+void init_points(t_fdf *fdf, t_data *data);
+
+//		draw_map.c
+void draw_lines(t_fdf *fdf, t_data *data, bool right, bool down);
+
+//		init_matrix.c
 int32_t linecount(char *argv_map);
 void init_matrix(t_fdf *fdf);
 
