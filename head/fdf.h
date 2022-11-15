@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/15 18:03:43 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:49:18 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 typedef struct  s_fdf
 {
-	char	**matrix;
+	int32_t	**matrix;
 
 	float curr_point[3];
 	float right_point[3];
@@ -129,7 +129,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *str, int c);
-int	ft_atoi(const char *str);
+int32_t	ft_atoi(const char *str);
+int32_t	amount_subs(const char *s, char c);
+char	**ft_split(char const *s, char c);
+
 
 
 //		not_compile_funcs.c

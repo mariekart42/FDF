@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:05:13 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/15 18:04:43 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:16:08 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void init_current_point(t_fdf *fdf, char *lower_or_right_point)
 		printf("in first point\n");
 		fdf->curr_point[0] = START_POINT_X;
 		fdf->curr_point[1] = START_POINT_Y;
-		fdf->curr_point[2] = fdf->matrix[0][0];
+		fdf->curr_point[2] = fdf->matrix[0][0] - 48;
 	}
 	else if (ft_strncmp(lower_or_right_point, "right_point", 11) == 0)
 	{
 		fdf->curr_point[0] = fdf->right_point[0];
 		fdf->curr_point[1] = fdf->right_point[1];
-		fdf->curr_point[2] = fdf->right_point[2];
+		fdf->curr_point[2] = fdf->right_point[2] - 48;
 	}
 	else 
 	{
 		fdf->curr_point[0] = fdf->lower_point[0];
 		fdf->curr_point[1] = fdf->lower_point[1];
-		fdf->curr_point[2] = fdf->lower_point[2];
+		fdf->curr_point[2] = fdf->lower_point[2] - 48;
 	}
 }
 
