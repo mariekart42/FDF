@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_3d.c                                            :+:      :+:    :+:   */
+/*   init_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/10 15:08:43 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:04:19 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void init_matrix(t_fdf *fdf)
 	lc = linecount(fdf->argv_map);
 	fd = open(fdf->argv_map, O_RDONLY, 0);
 	if (fd < 0)
-		error_msg("unable to open file!\n");	
+		error_msg("unable to open file!\n");
+	fdf->linecount_map = lc;
 	fdf->matrix = malloc(sizeof(t_fdf*) * lc + 1);
 	while (lc > i)
 	{

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/15 13:52:32 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:03:43 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define START_POINT_X 200
 # define START_POINT_Y 600
 
-# define LINE_LEN 300
+# define LINE_LEN 100
 # define ANGLE 0.5
 
 #include "../mlx/mlx.h"
@@ -47,6 +47,8 @@ typedef struct  s_fdf
 	float right_point[3];
 	float lower_point[3];
 	
+	int32_t linecount_map;
+
 	float y_vector;
 	float x_vector;
 
@@ -87,7 +89,7 @@ typedef struct	s_data
 
 
 //		init_points.c
-void init_current_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
+void init_current_point(t_fdf *fdf, char *lower_or_right_point);
 void init_lower_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
 void init_next_right_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
 void init_points(t_fdf *fdf, t_data *data);
