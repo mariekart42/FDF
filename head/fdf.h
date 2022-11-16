@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 14:32:12 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:26:34 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 # define HIGHT 1000
 # define BUFFER_SIZE 20
 
-# define START_POINT_X 200
-# define START_POINT_Y 600
+# define TILE_HIGHT 50
+# define TILE_WIDHT 50
 
-# define LINE_LEN 100
+# define START_POINT_X 200
+# define START_POINT_Y 400
+
+# define LINE_LEN 1
 # define ANGLE 0.5
 
 #include "../mlx/mlx.h"
@@ -43,17 +46,20 @@ typedef struct  s_fdf
 {
 	int32_t	**matrix;
 
-	float curr_point[3];
-	float right_point[3];
-	float lower_point[3];
+	// float curr_point[3];
+	// float right_point[3];
+	// float lower_point[3];
 	
 	int32_t linecount_map;
 	int32_t wordcount_map;
 
-	float y_vector;
-	float x_vector;
+	// float	x1;
+	// float	y1;
 
-	int val;
+	// float y_vector;
+	// float x_vector;
+
+	// int val;
 	char *argv_map;
 	
 	struct s_fdf *next;
@@ -88,6 +94,11 @@ typedef struct	s_data
 
 # define RESET "\x1B[0m"
 
+//		new_try.c
+float get_point(float prev_x, float prev_y, char *x_or_y);
+void draw_tile(t_data *data, float x1, float y1);
+
+
 
 //		init_points.c
 void init_current_point(t_fdf *fdf, char *lower_or_right_point);
@@ -95,14 +106,13 @@ void init_lower_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
 void init_next_right_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
 void init_points(t_fdf *fdf, t_data *data);
 
-//		draw_map.c
-void draw_lines(t_fdf *fdf, t_data *data, bool right, bool down);
+// //		draw_map.c
+// void draw_lines(t_fdf *fdf, t_data *data, bool right, bool down);
 
 //		init_matrix.c
 int32_t linecount(char *argv_map);
 void init_matrix(t_fdf *fdf);
 int32_t wordcount(char *argv_map);
-void show(int **matrix);
 
 
 // 		draw_map.c

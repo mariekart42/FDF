@@ -8,8 +8,7 @@ SRC =	files/delete_later_funcs.c \
 		files/error.c \
 		files/get_next_line.c \
 		files/init_matrix.c \
-		files/init_points.c \
-		files/draw_map.c
+		files/new_try.c
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
 

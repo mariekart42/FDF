@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 14:54:00 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:57:01 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,40 +28,6 @@ int32_t linecount(char *argv_map)
 		count++;
 	return (count);
 }
-
-// int32_t count_lines_(char **str)
-// {
-// 	int32_t i = 0;
-	
-// 	while (str != NULL)
-// 	{
-// 		i++;
-// 		str++;
-// 	}
-// 	return (i + 1);
-// }
-
-// /*
-//  * converting a string to int array
-//  */
-// int32_t *stoi(char *str)
-// {
-// 	char **tmp;
-// 	int32_t i = 0;
-// 	int32_t *result;
-// 	int32_t count_lines;
-
-// 	tmp = ft_split(str, ' ');
-// 	count_lines = count_lines_(tmp);
-// 	result = (int32_t *)malloc(sizeof(int32_t));
-// 	while (i < count_lines)
-// 	{
-// 		result[i] = ft_atoi(tmp[i]);
-// 		i++;
-// 	}
-// 	return (result);
-// }
-
 
 /*
  * function caounts the amount of single arguments in one line
@@ -88,7 +54,6 @@ int32_t wordcount(char *argv_map)
 			count++;
 		i++;
 	}
-	printf("count: %d\n", count);
 	return (count);
 }
 
@@ -117,35 +82,11 @@ void init_matrix(t_fdf *fdf)
 		while (fdf->wordcount_map > k)
 		{
 			fdf->matrix[i][k] = (ft_atoi(tmp[k]));
-			// printf(YEL"%d "RESET, fdf->matrix[i][k]);
 			k++;
 		}
-		// printf("\n");
 		k = 0;
 		if (tmp)
 			free(tmp);
-		
 		i++;
 	}
-	// show(fdf->matrix);
 }
-
-// void show(int **matrix)
-// {
-// 	int32_t i = 0;
-// 	int32_t k = 0;
-// 	while (matrix[i] != NULL)
-// 	{
-// 		while (matrix[i][k] != '\0')
-// 		{
-// 			printf(RED"here\n"RESET);
-// 			printf(GRN"%d "RESET, matrix[i][k]);
-// 			k++;
-// 		}
-// 		printf("\n");
-// 		k=0;
-// 		i++;
-// 	}
-// 		printf("\n\n");
-// }
-

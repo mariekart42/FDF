@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:05:13 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/15 18:16:08 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:51:14 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,41 @@ void init_current_point(t_fdf *fdf, char *lower_or_right_point)
 		printf("in first point\n");
 		fdf->curr_point[0] = START_POINT_X;
 		fdf->curr_point[1] = START_POINT_Y;
-		fdf->curr_point[2] = fdf->matrix[0][0] - 48;
+		fdf->curr_point[2] = fdf->matrix[0][0];
 	}
 	else if (ft_strncmp(lower_or_right_point, "right_point", 11) == 0)
 	{
 		fdf->curr_point[0] = fdf->right_point[0];
 		fdf->curr_point[1] = fdf->right_point[1];
-		fdf->curr_point[2] = fdf->right_point[2] - 48;
+		fdf->curr_point[2] = fdf->right_point[2];
 	}
 	else 
 	{
 		fdf->curr_point[0] = fdf->lower_point[0];
 		fdf->curr_point[1] = fdf->lower_point[1];
-		fdf->curr_point[2] = fdf->lower_point[2] - 48;
+		fdf->curr_point[2] = fdf->lower_point[2];
 	}
 }
 
 void init_lower_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z)
 {
-	fdf->lower_point[0] = x + LINE_LEN + START_POINT_X;
-	fdf->lower_point[1] = ((y + LINE_LEN) * (ANGLE * (-1))) + START_POINT_Y;
+	// int tmp;
+	// tmp = x;
+	// x=y;
+	// y=x;
+	fdf->lower_point[0] = (x * LINE_LEN) + START_POINT_Y + LINE_LEN;
+	fdf->lower_point[1] = ((y * LINE_LEN) * (ANGLE * (-1))) + START_POINT_X;
 	fdf->lower_point[2] = z;
 }
 
 void init_next_right_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z)
 {
-	fdf->right_point[0] = x + LINE_LEN + START_POINT_X;
-	fdf->right_point[1] = ((y + LINE_LEN) * ANGLE) + START_POINT_Y;
+	// 	int32_t tmp;
+	// tmp = x;
+	// x=y;
+	// y=x;
+	fdf->right_point[0] = (x * LINE_LEN ) + START_POINT_Y + LINE_LEN;
+	fdf->right_point[1] = ((y * LINE_LEN) * ANGLE) + START_POINT_X;
 	fdf->right_point[2] = z;
 }
 
@@ -56,7 +64,8 @@ void init_points(t_fdf *fdf, t_data *data)
 
 	while (i < fdf->linecount_map)
 	{
-		while (fdf->matrix[i][k] != '\0')
+		// while (fdf->matrix[i][k] != '\0')
+		while (k < fdf->wordcount_map)
 		{
 			if (i == 0 && k == 0)
 				init_current_point(fdf, "first_point");
