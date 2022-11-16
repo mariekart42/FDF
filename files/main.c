@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/15 18:09:28 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:55:37 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,7 @@ int main(int argc, char *argv[])
 
     data.colour = 0xffefd5;
     init_matrix(&fdf);
-    
-    // printf("%s\n", fdf.matrix[0]);
-    // printf("%s\n", fdf.matrix[1]);
-    // printf("%s\n", fdf.matrix[2]);
-    // printf("%s\n", fdf.matrix[3]);
-    // printf("%s\n", fdf.matrix[4]);
-    // printf("%s\n", fdf.matrix[5]);
-    // printf("%s\n", fdf.matrix[6]);
-    // printf("%s\n", fdf.matrix[7]);
-    // printf("%s\n", fdf.matrix[8]);
-    // printf("%s\n", fdf.matrix[9]);
-    // printf("%s\n", fdf.matrix[10]);
-    // printf("%s\n", fdf.matrix[11]);
+
 
     init_points(&fdf, &data);
 

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/15 18:49:18 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:32:12 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct  s_fdf
 	float lower_point[3];
 	
 	int32_t linecount_map;
+	int32_t wordcount_map;
 
 	float y_vector;
 	float x_vector;
@@ -100,6 +101,8 @@ void draw_lines(t_fdf *fdf, t_data *data, bool right, bool down);
 //		init_matrix.c
 int32_t linecount(char *argv_map);
 void init_matrix(t_fdf *fdf);
+int32_t wordcount(char *argv_map);
+void show(int **matrix);
 
 
 // 		draw_map.c
