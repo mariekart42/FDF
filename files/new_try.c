@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:20:45 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 19:29:49 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:42:15 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 float get_point(float prev_x, float prev_y, char *x_or_y)
 {
 	if (ft_strncmp(x_or_y, "x", 1) == 0)
-		return (START_POINT_X + prev_x * (TILE_WIDHT / 2) - prev_y * (TILE_WIDHT / 2));
+		return (START_POINT_X + prev_x * (TILE_WIDHT/ LINE_LEN) - prev_y * (TILE_WIDHT / LINE_LEN));
 	else
-		return (START_POINT_Y + prev_x * (TILE_HIGHT / 2) + prev_y * (TILE_HIGHT / 2));
+		return (START_POINT_Y + prev_x * (TILE_HIGHT/ LINE_LEN) + prev_y * (TILE_HIGHT / LINE_LEN));
 }
 
 /*

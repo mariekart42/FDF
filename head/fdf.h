@@ -6,25 +6,30 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 19:26:34 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:44:05 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef FDF_H
 #define FDF_H
 
-# define WIDHT 1000
-# define HIGHT 1000
+# define WIDHT 2000
+# define HIGHT 1300
+
+// for get_next_line
 # define BUFFER_SIZE 20
 
+// changing TILE_HIGHT and TILE_WIDHT creates differnt angles
 # define TILE_HIGHT 50
-# define TILE_WIDHT 50
+# define TILE_WIDHT 200
 
-# define START_POINT_X 200
+
+# define START_POINT_X 500
 # define START_POINT_Y 400
 
+// smoler val makes grid bigger
 # define LINE_LEN 1
-# define ANGLE 0.5
+
 
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
