@@ -6,29 +6,34 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:07:31 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 19:00:38 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:21:57 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
 
-// void draw_lines(t_fdf *fdf, t_data *data, bool right, bool down)
-// {
-// 	if (right == true && down == true)
-// 	{
-// 		// printf("current:\n1.  %f\n2.  %f\n\n", fdf->curr_point[0], fdf->curr_point[1]);
-// 		put_cross(data, fdf->curr_point[0], fdf->curr_point[1]);
-// 		// printf("right:\n1.  %f\n2.  %f\n\n", fdf->right_point[0], fdf->right_point[1]);
-// 		put_cross(data, fdf->right_point[0], fdf->right_point[1]);
-// 		// printf("lower:\n1.  %f\n2.  %f\n\n\n", fdf->lower_point[0], fdf->lower_point[1]);
-// 		put_cross(data, fdf->lower_point[0], fdf->lower_point[1]);
-		
-// 		init_x(data, fdf->curr_point[0], fdf->right_point[0]);
-// 		init_y(data, fdf->curr_point[1], fdf->right_point[1]);
-// 		put_line(data);
-		
-// 		init_x(data, fdf->curr_point[0], fdf->lower_point[0]);
-// 		init_y(data, fdf->curr_point[1], fdf->lower_point[1]);
-// 		put_line(data);
-// 	}
-// }
+void draw_map(t_fdf *fdf, t_data *data)
+{
+	int32_t x = 0;
+	int32_t y = 0;
+	int32_t z[3];
+	
+	while (fdf->linecount_map > y+1)
+	{
+		while (fdf->wordcount_map > x+1)
+		{
+			z[0] = fdf->matrix[y][x];
+			z[1] = fdf->matrix[y][x+1];
+			z[2] = fdf->matrix[y+1][x];
+			// if (z[0] > 99)
+			// 	data->colour = 0xff0000;
+			// else
+				data->colour = 0xfffafa;
+
+			draw_tile(data, x, y, z);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 19:31:42 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:17:26 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,47 @@
 
 int main(int argc, char *argv[])
 {
-    printf(YEL"\n>------- start -------\n\n\n"RESET);
-    
     t_data  data;
     t_fdf   fdf;
-
     if (argc != 2)
         error_msg("input args incorrect! --> usage:  ./exec <map>\n");
+    
+    printf(YEL"\n>------- start -------\n\n\n"RESET);
 
     data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, WIDHT, HIGHT, "bullshit world!");
-    
-    argc++;
 
     data.cross_colour = 0xff6347;
 
+    data.colour = 0x708090; //grey
     data.colour = 0xffefd5;
     
     fdf.argv_map = argv[1];
 
-    put_cross(&data, 200, 200);
-    // init_matrix(&fdf);
-    // init_points(&fdf, &data);
+    put_cross(&data, START_POINT_X, START_POINT_Y);
+    init_matrix(&fdf);
     
-    data.colour = 0x708090; //grey
-    draw_tile(&data, 0, 0);
-    data.colour = 0xffffff;
-    draw_tile(&data, 0, 1);
-    draw_tile(&data, 0, 2);
-    draw_tile(&data, 0, 3);
-    draw_tile(&data, 1, 0);
-    draw_tile(&data, 1, 1);
-    draw_tile(&data, 1, 2);
-    draw_tile(&data, 1, 3);
-    draw_tile(&data, 2, 0);
-    draw_tile(&data, 2, 1);
-    draw_tile(&data, 2, 2);
-    draw_tile(&data, 2, 3);
-    draw_tile(&data, 3, 0);
-    draw_tile(&data, 3, 1);
-    draw_tile(&data, 3, 2);
-    draw_tile(&data, 3, 3);
-    data.colour = 0xffefd5;
-    // draw_tile(&data, 0, 1);
-    // draw_tile(&data, 1, 0);
+    draw_map(&fdf, &data);    
 
-
-    // print_coordinate(&data, &fdf, 0, 0, 0);
-    // print_coordinate(&data, &fdf, 0, 0, 0);
-
-
+    // data.colour = 0xffffff;
+    // int32_t z[3];
+    // z[0] = 0;   // current point
+    // z[1] = 0;  // x_axe point(right one)
+    // z[2] = 0;   // y_axe point(left one)
+    // draw_tile(&data, 0, 0, z);
+        
+    // data.colour = 0x708090; //grey
+    // z[0] = 0;
+    // z[1] = 0;
+    // z[2] = 0;
+    // draw_tile(&data, 1, 0, z);
     
+    // data.colour = 0x708090; //grey
+    // z[0] = 0;
+    // z[1] = 0;
+    // z[2] = 0;
+    // draw_tile(&data, 2, 0, z);
 
-
-
-    
-
-    // put_cross(&data, START_POINT_X, START_POINT_Y);
     mlx_loop(data.mlx);
 }
 

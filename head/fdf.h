@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/17 15:44:05 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:17:09 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 // changing TILE_HIGHT and TILE_WIDHT creates differnt angles
 # define TILE_HIGHT 50
-# define TILE_WIDHT 200
+# define TILE_WIDHT 100
 
 
 # define START_POINT_X 500
 # define START_POINT_Y 400
 
 // smoler val makes grid bigger
-# define LINE_LEN 1
+# define LINE_LEN 5
 
 
 #include "../mlx/mlx.h"
@@ -50,21 +50,10 @@
 typedef struct  s_fdf
 {
 	int32_t	**matrix;
-
-	// float curr_point[3];
-	// float right_point[3];
-	// float lower_point[3];
 	
 	int32_t linecount_map;
 	int32_t wordcount_map;
 
-	// float	x1;
-	// float	y1;
-
-	// float y_vector;
-	// float x_vector;
-
-	// int val;
 	char *argv_map;
 	
 	struct s_fdf *next;
@@ -79,7 +68,7 @@ typedef struct	s_data
 	int32_t cross_colour;
 	// put line
 	float	slow[2];
-	float fast[2];
+	float 	fast[2];
 
     
     void	*mlx;
@@ -99,20 +88,25 @@ typedef struct	s_data
 
 # define RESET "\x1B[0m"
 
+
 //		new_try.c
-float get_point(float prev_x, float prev_y, char *x_or_y);
-void draw_tile(t_data *data, float x1, float y1);
+float get_point(float prev_x, float prev_y, int32_t prev_z, char *x_or_y);
+void draw_tile(t_data *data, float x1, float y1, int32_t *z);
+
+
+//		draw_map.c
+void draw_map(t_fdf *fdf, t_data *data);
 
 
 
-//		init_points.c
-void init_current_point(t_fdf *fdf, char *lower_or_right_point);
-void init_lower_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
-void init_next_right_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
-void init_points(t_fdf *fdf, t_data *data);
 
-// //		draw_map.c
-// void draw_lines(t_fdf *fdf, t_data *data, bool right, bool down);
+// //		init_points.c
+// void init_current_point(t_fdf *fdf, char *lower_or_right_point);
+// void init_lower_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
+// void init_next_right_point(t_fdf *fdf, int32_t x, int32_t y, int32_t z);
+// void init_points(t_fdf *fdf, t_data *data);
+
+
 
 //		init_matrix.c
 int32_t linecount(char *argv_map);
@@ -153,9 +147,9 @@ char	**ft_split(char const *s, char c);
 
 
 
-//		not_compile_funcs.c
-void put_rectangle(t_data *x_data, int colour);
-void shift_rectangle(t_data *x_data, int colour, bool right, bool up, int times, int sep);
+// //		not_compile_funcs.c
+// void put_rectangle(t_data *x_data, int colour);
+// void shift_rectangle(t_data *x_data, int colour, bool right, bool up, int times, int sep);
 
 //		math.c
 float m(t_data *x_data, int case_);

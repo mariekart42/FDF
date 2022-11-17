@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/16 14:57:01 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:33:26 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void init_matrix(t_fdf *fdf)
 		fdf->matrix[i] = malloc(sizeof(t_fdf) * fdf->wordcount_map);
 		while (fdf->wordcount_map > k)
 		{
-			fdf->matrix[i][k] = (ft_atoi(tmp[k]));
+			fdf->matrix[i][k] = ft_atoi(tmp[k]) * 10;
 			k++;
 		}
 		k = 0;
