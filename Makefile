@@ -1,4 +1,6 @@
 NAME = fdf
+LIBFT = libft
+# GNL = get_next_line
 SRC =	files/include_libft.c \
 		files/math.c \
 		files/main.c \
@@ -10,7 +12,9 @@ SRC =	files/include_libft.c \
 		files/draw_map.c \
 		files/helper_funcs/helper_funcs.c
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
+CFLAGS = -Wall -Wextra -Werror -Iincludes -g
+DEBUG = -fsanitize=address
+LIBS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
@@ -20,7 +24,7 @@ all: $(NAME)
 $(NAME):
 	$(MAKE) -C mlx/
 	$(MAKE) -C libft/
-	$(CC) $(SRC) $(CFLAGS) $(NAME)
+	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a $(DEBUG) -o $(NAME)
 	@echo "Everything compiled successfully"
 
 g:
