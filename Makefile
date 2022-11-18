@@ -7,7 +7,6 @@ SRC =	files/include_libft.c \
 		files/error.c \
 		files/get_next_line.c \
 		files/init_matrix.c \
-		files/new_try.c \
 		files/draw_map.c \
 		files/helper_funcs/helper_funcs.c
 

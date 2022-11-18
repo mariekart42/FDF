@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/17 18:33:26 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:13:15 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int32_t wordcount(char *argv_map)
  * function initialize the matrix with the current map
  * as an 2d array of type int
  */
-void init_matrix(t_fdf *fdf)
+void init_matrix(t_fdf *fdf, t_data *data)
 {
 	int32_t	fd;
 	int32_t	i;
@@ -69,17 +69,17 @@ void init_matrix(t_fdf *fdf)
 	char **tmp;
 
 	i = 0;
-	fdf->linecount_map = linecount(fdf->argv_map);
-	fdf->wordcount_map = wordcount(fdf->argv_map);
+	data->linecount_map = linecount(fdf->argv_map);
+	data->wordcount_map = wordcount(fdf->argv_map);
 	fd = open(fdf->argv_map, O_RDONLY, 0);
 	if (fd < 0)
 		error_msg("unable to open file!\n");
-	fdf->matrix = malloc(sizeof(t_fdf *) * fdf->linecount_map);
-	while (fdf->linecount_map > i)
+	fdf->matrix = malloc(sizeof(t_fdf *) * data->linecount_map);
+	while (data->linecount_map > i)
 	{
 		tmp = ft_split(get_next_line(fd), ' ');
-		fdf->matrix[i] = malloc(sizeof(t_fdf) * fdf->wordcount_map);
-		while (fdf->wordcount_map > k)
+		fdf->matrix[i] = malloc(sizeof(t_fdf) * data->wordcount_map);
+		while (data->wordcount_map > k)
 		{
 			fdf->matrix[i][k] = ft_atoi(tmp[k]) * 10;
 			k++;

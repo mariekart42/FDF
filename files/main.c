@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/17 18:17:26 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:04:27 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int main(int argc, char *argv[])
     printf(YEL"\n>------- start -------\n\n\n"RESET);
 
     data.mlx = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx, WIDHT, HIGHT, "bullshit world!");
+    
+    // mlx_new_window(data.mlx, WIDHT, HIGHT, WINDOW_NAME);
 
     data.cross_colour = 0xff6347;
 
@@ -30,64 +31,33 @@ int main(int argc, char *argv[])
     data.colour = 0xffefd5;
     
     fdf.argv_map = argv[1];
+    
 
-    put_cross(&data, START_POINT_X, START_POINT_Y);
-    init_matrix(&fdf);
+    init_matrix(&fdf, &data);
+    
+	data.mlx_win = init_window(&data);
     
     draw_map(&fdf, &data);    
 
-    // data.colour = 0xffffff;
-    // int32_t z[3];
-    // z[0] = 0;   // current point
-    // z[1] = 0;  // x_axe point(right one)
-    // z[2] = 0;   // y_axe point(left one)
-    // draw_tile(&data, 0, 0, z);
-        
-    // data.colour = 0x708090; //grey
-    // z[0] = 0;
-    // z[1] = 0;
-    // z[2] = 0;
-    // draw_tile(&data, 1, 0, z);
-    
-    // data.colour = 0x708090; //grey
-    // z[0] = 0;
-    // z[1] = 0;
-    // z[2] = 0;
-    // draw_tile(&data, 2, 0, z);
+    // colouring();
 
     mlx_loop(data.mlx);
 }
 
 
+void *init_window(t_data *data)
+{
+    // if (AUTO_SIZING == true)
+    //     return (calc_size(data));
+    // else
+        return (mlx_new_window(data->mlx, WIDHT, HIGHT, WINDOW_NAME));
+}
 
-    // ---------------------------------------
-    // nice pic lol
-    // int i = 1;
-    // while (i < 500)
-    // {
-    //     isometric(&data, 100, 900, i*(-10));
-    // i++;
-    // }
-    // ---------------------------------------
-    
-    // // for testing put_line for all cases:
-    // ---------------------------------------
-    // // CASE 1 (x fast, P1 below P2) => WORKS
-    // // int x1=100;  int y1=HIGHT-100;
-    // // int x2=800;  int y2=HIGHT-300;
-    // // CASE 2 (y fast, P1 below P2) => WORKS
-    // // int x1=200; int y1=HIGHT-100;
-    // // int x2=500; int y2=HIGHT-500;
-    // // CASE 3 (x fast, P1 above P2) => WORKS
-    // int x1=110; int y1=HIGHT-400;
-    // int x2=500; int y2=HIGHT-300;
-    // // CASE 4 (y fast, P1 above P2) => WORKS
-    // // int x1=100; int y1=HIGHT-500;
-    // // int x2=300; int y2=HIGHT-100;
-    // int x1=12; int y1=HIGHT-80;
-    // int x2=991; int y2=HIGHT-41;
-    // put_cross(&data, x1, y1);
-    // put_cross(&data, x2, y2);
-    // init_x(&data, x1, x2);
-    // init_y(&data, y1, y2);
-    // ---------------------------------------
+// void *calc_size(t_data *data)
+// {
+//     int32_t widht;
+//     int32_t hight;    
+
+// return NULL;
+//     // return (mlx_new_window(data->mlx, widht, hight, WINDOW_NAME));
+// }

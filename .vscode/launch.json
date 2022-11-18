@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceRoot}/fdf",
-			"args": ["maps/42.fdf"],
+			"args": ["maps/50-4.fdf"],
 			"env": [],
 			"cwd": "${workspaceRoot}"
 		}

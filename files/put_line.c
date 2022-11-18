@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 10:54:20 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:02:12 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void check_koordinates(t_data *data)
  *   string needs to be "x2"
  * - function returns the x_value that is either fast[0] or slow[0]
  */
-float find_x(t_data *data, char *y1_or_y2)
+double find_x(t_data *data, char *y1_or_y2)
 {
 	if (ft_strncmp(y1_or_y2, "x2", 2) == 0)
 		return (data->x[1]);
@@ -51,7 +51,7 @@ float find_x(t_data *data, char *y1_or_y2)
  *   string needs to be "y2"
  * - function returns the y_value that is either fast[0] or slow[0]
  */
-float find_y(t_data *data, char *y1_or_y2)
+double find_y(t_data *data, char *y1_or_y2)
 {
 	if (ft_strncmp(y1_or_y2, "y2", 2) == 0)
 		return (data->y[1]);
@@ -93,8 +93,8 @@ bool reached_second_point(t_data *data)
  */
 void init_direction_speed(t_data *data)
 {
-	float tmp_x;
-	float tmp_y;
+	double tmp_x;
+	double tmp_y;
 	
 	// init difference of both Points to tmp, 
 	// if val is negative -> make pos 
@@ -145,7 +145,7 @@ void init_direction_speed(t_data *data)
  * 	  needs to get added 					 one to reach P2
  *    by 1 to reach P2
  */
-float get_slow_factor(t_data *data)
+double get_slow_factor(t_data *data)
 {
 	if (data->slow[1] == 120)
 		return (1);
@@ -163,7 +163,7 @@ float get_slow_factor(t_data *data)
  * same as get_slow_fatcor() but for the fast factor
  * check out get_slow_factor() for more information
  */
-float get_fast_factor(t_data *data)
+double get_fast_factor(t_data *data)
 {
 	if (data->fast[1] == 120)
 		return (1);
@@ -205,7 +205,7 @@ float get_fast_factor(t_data *data)
  *    0 1 2 3 4 5 6 7 		   |    0 1 2 3 4 5 6 7
  * 		=> x = [y-b]/m		   | 	  => y = mx+b	
  */
-float distance_to_line(t_data *data, float slow_factor, float fast_factor)
+double distance_to_line(t_data *data, double slow_factor, double fast_factor)
 {
 	// if case 1 or 4
 	if ((data->slow[1] == 121 && slow_factor == -1 && fast_factor == 1) \
@@ -239,8 +239,8 @@ float distance_to_line(t_data *data, float slow_factor, float fast_factor)
  */
 void bresenham_algo(t_data *data)
 {
-	float	slow_factor;
-	float	fast_factor;
+	double	slow_factor;
+	double	fast_factor;
 
 	check_koordinates(data);
 	init_direction_speed(data);

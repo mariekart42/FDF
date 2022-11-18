@@ -6,12 +6,17 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 10:59:17 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:58:28 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef FDF_H
 #define FDF_H
+
+// if auto_sizing is true, widht's get calculated hight's
+// -> changing Buffers has no effect
+# define WINDOW_NAME "Das ist ein window lol"
+# define AUTO_SIZING false
 
 # define WIDHT 2000
 # define HIGHT 1300
@@ -20,15 +25,14 @@
 # define BUFFER_SIZE 20
 
 // changing TILE_HIGHT and TILE_WIDHT creates differnt angles
-# define TILE_HIGHT 50
-# define TILE_WIDHT 100
+# define TILE_HIGHT 100
+# define TILE_WIDHT 300
 
-
-# define START_POINT_X 500
-# define START_POINT_Y 400
+# define START_POINT_X 1000
+# define START_POINT_Y 100
 
 // smoler val makes grid bigger
-# define LINE_LEN 5
+# define LINE_LEN 8
 
 
 #include "../mlx/mlx.h"
@@ -52,8 +56,6 @@ typedef struct  s_fdf
 {
 	int32_t	**matrix;
 	
-	int32_t linecount_map;
-	int32_t wordcount_map;
 
 	char	*argv_map;
 	
@@ -62,14 +64,17 @@ typedef struct  s_fdf
 
 typedef struct	s_data
 {
-    float	x[2];
-    float	y[2];
+    double	x[2];
+    double	y[2];
+	
+	int32_t linecount_map;
+	int32_t wordcount_map;
 	
 	int32_t	colour;
 	int32_t	cross_colour;
 	// put line
-	float	slow[2];
-	float 	fast[2];
+	double	slow[2];
+	double 	fast[2];
 
     void	*mlx;
 	void	*mlx_win;
@@ -90,9 +95,14 @@ typedef struct	s_data
 // ----------------------
 
 
+//		auto_sizing.c
+void *init_window(t_data *data);
+void *calc_size(t_data *data);
+
+
 //		draw_map.c
-float	get_point(float prev_x, float prev_y, int32_t prev_z, char *x_or_y);
-void	draw_tile(t_data *data, float x1, float y1, int32_t *z);
+double	get_point(double prev_x, double prev_y, int32_t prev_z, char *x_or_y);
+void	draw_tile(t_data *data, double x1, double y1, int32_t *z);
 void	draw_map(t_fdf *fdf, t_data *data);
 
 //		error.c
@@ -107,21 +117,21 @@ void	init_y(t_data *data, int32_t y1, int32_t y2);
 //		init_matrix.c
 int32_t linecount(char *argv_map);
 int32_t wordcount(char *argv_map);
-void	init_matrix(t_fdf *fdf);
+void init_matrix(t_fdf *fdf, t_data *data);
 
 //		math.c
-float	m(t_data *x_data, int case_);
-float	b(t_data *x_data, int case_);
+double	m(t_data *x_data, int case_);
+double	b(t_data *x_data, int case_);
 
 //		put_line.c
 void	check_koordinates(t_data *data);
-float	find_x(t_data *data, char *y1_or_y2);
-float	find_y(t_data *data, char *y1_or_y2);
+double	find_x(t_data *data, char *y1_or_y2);
+double	find_y(t_data *data, char *y1_or_y2);
 bool	reached_second_point(t_data *data);
 void	init_direction_speed(t_data *data);
-float	get_slow_factor(t_data *data);
-float	get_fast_factor(t_data *data);
-float	distance_to_line(t_data *data, float slow_factor, float fast_factor);
+double	get_slow_factor(t_data *data);
+double	get_fast_factor(t_data *data);
+double	distance_to_line(t_data *data, double slow_factor, double fast_factor);
 void	bresenham_algo(t_data *data);
 void	put_line(t_data *data);
 
@@ -145,8 +155,8 @@ char	**ft_split(char const *s, char c);
 // -----------------------------------------------------------
 // ---- delete_later_funcs.c ---------------------------------
 void 	put_cross(t_data *x_data,int x, int y);
-void 	print_case(t_data *x_data, float slow_f, float fast_f);
-void 	print_factor(float fast_f, float slow_f);
+void 	print_case(t_data *x_data, double slow_f, double fast_f);
+void 	print_factor(double fast_f, double slow_f);
 // ------------------------------------------------------------
 
 #endif
