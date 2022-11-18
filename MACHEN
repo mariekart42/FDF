@@ -1,0 +1,8 @@
+
+
+
+1.	include actual libft and get_next_line -> Makefile
+2.	calculate widht and hight from windwo to display the map (amount of lines and coloumns compared to display size)
+3.	include colours and maybe rotation shit
+4.	write comments
+5.	clean up code

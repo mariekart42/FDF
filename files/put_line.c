@@ -6,12 +6,11 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/11 11:46:02 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/18 10:54:20 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
-#include "../libft/libft.h"
 
 /*
  * function checks if P1 is always on the right side from P2 (P2 always left side)
@@ -110,7 +109,6 @@ void init_direction_speed(t_data *data)
 	// means x is the fast direction and y the slow one or they're both the same
 	if (tmp_x >= tmp_y)
 	{
-		printf("direction_speed: "YEL "x\n"RESET);
 		data->slow[0] = data->y[0];
 		data->slow[1] = 121;
 		data->fast[0] = data->x[0];
@@ -118,7 +116,6 @@ void init_direction_speed(t_data *data)
 	}
 	else // else y is the fast direction and x slow
 	{
-		printf("direction_speed: "YEL "y\n"RESET);
 		data->slow[0] = data->x[0];
 		data->slow[1] = 120;
 		data->fast[0] = data->y[0];
@@ -168,8 +165,6 @@ float get_slow_factor(t_data *data)
  */
 float get_fast_factor(t_data *data)
 {
-		
-	// orig
 	if (data->fast[1] == 120)
 		return (1);
 	else if (data->fast[1] == 121 && data->y[0] > data->y[1])
@@ -247,16 +242,10 @@ void bresenham_algo(t_data *data)
 	float	slow_factor;
 	float	fast_factor;
 
- // streich holz schächtel chen
-	// init_coordinates(data);
-	
 	check_koordinates(data);
 	init_direction_speed(data);
 	slow_factor = get_slow_factor(data);
 	fast_factor = get_fast_factor(data);
-	// print_case(data, slow_factor, fast_factor);
-	// print_factor(fast_factor, slow_factor);
-	
 	while (reached_second_point(data) == false)
 	{
 		data->fast[0] += fast_factor;
@@ -287,7 +276,5 @@ void put_line(t_data *data)
 		put_horizontal_line(data);
 	else
 		bresenham_algo(data);
-		
-printf(GRN "--> done\n" RESET);
 }
 
