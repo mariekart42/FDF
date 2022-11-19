@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/19 16:08:20 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:24:54 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define LINE_LEN 8
 
 
-#include "../mlx/mlx.h"
-#include "../libft/libft.h"
+#include "../include/mlx/mlx.h"
+#include "../include/libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
 # include <stdbool.h>

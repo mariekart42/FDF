@@ -1,14 +1,14 @@
 NAME = fdf
-LIBFT = libft
-SRC =	get_next_line/get_next_line.c \
-		files/math.c \
-		files/main.c \
-		files/etc.c \
-		files/put_line.c \
-		files/error.c \
-		files/init_matrix.c \
-		files/draw_map.c \
-		files/helper_funcs/helper_funcs.c
+LIBFT = include/libft
+SRC =	include/get_next_line/get_next_line.c \
+		fdf_files/math.c \
+		fdf_files/main.c \
+		fdf_files/etc.c \
+		fdf_files/put_line.c \
+		fdf_files/error.c \
+		fdf_files/init_matrix.c \
+		fdf_files/draw_map.c \
+		fdf_files/helper_funcs/helper_funcs.c
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 DEBUG = -fsanitize=address
@@ -20,8 +20,8 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):
-	$(MAKE) -C mlx/
-	$(MAKE) -C libft/
+	$(MAKE) -C include/mlx/
+	$(MAKE) -C include/libft/
 	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a $(DEBUG) -o $(NAME)
 	@echo "Everything compiled successfully"
 
@@ -34,7 +34,7 @@ clean:
 	@$(RM) $(NAME)
 	
 fclean: clean
-	@$(MAKE) clean -C mlx/
-	@$(MAKE) clean -C libft/
+	@$(MAKE) clean -C include/mlx/
+	@$(MAKE) clean -C include/libft/
 	
 re: fclean all

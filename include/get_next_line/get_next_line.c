@@ -6,11 +6,11 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 22:13:30 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/19 16:09:52 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:27:00 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head/fdf.h"
+#include "../../head/fdf.h"
 
 void	buff_after_line(char *buff)
 {
