@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/19 15:51:50 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/19 16:08:20 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ typedef struct	s_data
 # define RESET "\x1B[0m"
 // ----------------------
 
+void	buff_after_line(char *buff);
+char	*create_last(char *buff, char *line);
+char	*get_next_line(int fd);
 
 //		auto_sizing.c
 void *init_window(t_data *data);
@@ -137,22 +140,22 @@ void	put_line(t_data *data);
 
 
 // ----------------------------------------------------------
-// ---- delete later if included ----------------------------
-//		get_next_line.c
-void	buff_after_line(char *buff);
-char	*create_last(char *buff, char *line);
-char	*get_next_line(int fd);
+// // ---- delete later if included ----------------------------
+// //		get_next_line.c
+// void	buff_after_line(char *buff);
+// char	*create_last(char *buff, char *line);
+// char	*get_next_line(int fd);
 
-//		include_libft.c
-size_t	ft_strlen(const char *str);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *str, int c);
-int32_t	ft_atoi(const char *str);
-int32_t	amount_subs(const char *s, char c);
-char	**ft_split(char const *s, char c);
-// -----------------------------------------------------------
+// //		include_libft.c
+// size_t	ft_strlen(const char *str);
+// int		ft_strncmp(const char *s1, const char *s2, size_t n);
+// void	*ft_memmove(void *dest, const void *src, size_t n);
+// char	*ft_strjoin(char const *s1, char const *s2);
+// char	*ft_strchr(const char *str, int c);
+// int32_t	ft_atoi(const char *str);
+// int32_t	amount_subs(const char *s, char c);
+// char	**ft_split(char const *s, char c);
+// // -----------------------------------------------------------
 // ---- delete_later_funcs.c ---------------------------------
 void 	put_cross(t_data *x_data,int x, int y);
 void 	print_case(t_data *x_data, double slow_f, double fast_f);

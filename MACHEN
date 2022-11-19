@@ -1,14 +1,6 @@
 
 
-
-1.	include actualget_next_line -> Makefile
-2.	calculate widht and hight from windwo to display the map (amount of lines and coloumns compared to display size)
-3.	include colours and maybe rotation shit
-4.	write comments
-5.	clean up code
-
-
-
-MAPS:
-works:
-10-2.fdf
+1.	calculate widht and hight from windwo to display the map (amount of lines and coloumns compared to display size)
+2.	include colours and maybe rotation shit
+3.	write comments
+4.	clean up code

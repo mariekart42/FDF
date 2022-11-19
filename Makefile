@@ -1,13 +1,11 @@
 NAME = fdf
 LIBFT = libft
-# GNL = get_next_line
-SRC =	files/include_libft.c \
+SRC =	get_next_line/get_next_line.c \
 		files/math.c \
 		files/main.c \
 		files/etc.c \
 		files/put_line.c \
 		files/error.c \
-		files/get_next_line.c \
 		files/init_matrix.c \
 		files/draw_map.c \
 		files/helper_funcs/helper_funcs.c
