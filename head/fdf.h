@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 14:58:28 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:51:50 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 # define WINDOW_NAME "Das ist ein window lol"
 # define AUTO_SIZING false
 
-# define WIDHT 2000
-# define HIGHT 1300
+# define WIDHT 2600
+# define HIGHT 1500
 
 // for get_next_line
-# define BUFFER_SIZE 20
+# define BUFFER_SIZE 1
 
 // changing TILE_HIGHT and TILE_WIDHT creates differnt angles
-# define TILE_HIGHT 100
-# define TILE_WIDHT 300
+# define TILE_HIGHT 80
+# define TILE_WIDHT 200
 
-# define START_POINT_X 1000
+# define START_POINT_X WIDHT/2
 # define START_POINT_Y 100
 
 // smoler val makes grid bigger

@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 11:13:15 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:52:30 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int32_t wordcount(char *argv_map)
 	if (fd < 0)
 		error_msg("unable to open file!\n");
 	line = get_next_line(fd);
-	while (line[i] != '\0')
+	while (line[i] != '\0' && line[i] != '\n')
 	{
 		if (i == 0 && line[i] != ' ')
 			count++;

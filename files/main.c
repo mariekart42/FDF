@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 15:04:27 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:53:41 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int main(int argc, char *argv[])
 
     mlx_loop(data.mlx);
 }
+
+
+
 
 
 void *init_window(t_data *data)

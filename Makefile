@@ -28,8 +28,8 @@ $(NAME):
 	@echo "Everything compiled successfully"
 
 g:
-	$(MAKE) -C libft
-	$(CC) $(SRC) $(CFLAGS) $(NAME)
+	$(MAKE) -C libft/
+	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a -o $(NAME)
 	@echo "my shit compiled successfully"
 
 clean:
@@ -40,4 +40,3 @@ fclean: clean
 	@$(MAKE) clean -C libft/
 	
 re: fclean all
-# -Og -g3 -fsanitize=address
