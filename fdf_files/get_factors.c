@@ -6,16 +6,16 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:23:46 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:26:03 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:46:31 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
 
 /*
- * function checks first if the slow direction is x, if yes the slow_factor is alway +1
- *		but if the slow direction is y, it could either be -1 or +1
- *		then function checks if the first point is below or above the second point
+ *	function checks first if the slow direction is x, if yes the slow_factor is
+ *	alway +1 but if the slow direction is y, it could either be -1 or +1
+ *	then function checks if the first point is below or above the second point
  * MIND: 	in mlx the origin is not with ([x] 0/[y] 0) in the left-down corner
  * 			y0 is in the left-up corner
  * 			x0 is in the left-down corner
@@ -34,13 +34,12 @@
  * 	  needs to get added 					 one to reach P2
  *    by 1 to reach P2
  */
-double get_slow_factor(t_data *data)
+double	get_slow_factor(t_data *data)
 {
 	if (data->slow[1] == 120)
 		return (1);
 	else if (data->slow[1] == 121 && data->y[0] > data->y[1])
 		return (-1);
-	// case 3
 	if (data->slow[1] == 121 && data->y[0] < data->y[1])
 		return (1);
 	else
@@ -52,7 +51,7 @@ double get_slow_factor(t_data *data)
  * same as get_slow_fatcor() but for the fast factor
  * check out get_slow_factor() for more information
  */
-double get_fast_factor(t_data *data)
+double	get_fast_factor(t_data *data)
 {
 	if (data->fast[1] == 120)
 		return (1);
@@ -82,22 +81,17 @@ double get_fast_factor(t_data *data)
  * fast/slow[0] is the content of the 'fast' or 'slow' direction (either x or y)
  * fast/slow[1] is either 120 for 'x' or 121 for 'y'
  */
-void init_direction_speed(t_data *data)
+void	init_direction_speed(t_data *data)
 {
-	double tmp_x;
-	double tmp_y;
-	
-	// init difference of both Points to tmp, 
-	// if val is negative -> make pos 
-	// (cause comparing diferences only works with pos numbers)
+	double	tmp_x;
+	double	tmp_y;
+
 	tmp_x = data->x[1] - data->x[0];
 	tmp_y = data->y[1] - data->y[0];
 	if (tmp_x < 0)
 		tmp_x *= -1;
 	if (tmp_y < 0)
 		tmp_y *= -1;
-	
-	// means x is the fast direction and y the slow one or they're both the same
 	if (tmp_x >= tmp_y)
 	{
 		data->slow[0] = data->y[0];
@@ -105,7 +99,7 @@ void init_direction_speed(t_data *data)
 		data->fast[0] = data->x[0];
 		data->fast[1] = 120;
 	}
-	else // else y is the fast direction and x slow
+	else
 	{
 		data->slow[0] = data->x[0];
 		data->slow[1] = 120;
@@ -115,13 +109,14 @@ void init_direction_speed(t_data *data)
 }
 
 /*
- * function checks if P1 is always on the right side from P2 (P2 always left side)
+ * function checks if P1 is always on the right side from P2 
+ * (P2 always left side)
  * if that's not the case, the two points swap positions
  */
-void check_koordinates(t_data *data)
+void	check_koordinates(t_data *data)
 {
 	int32_t	swap_variable;
-	
+
 	if (data->x[0] > data->x[1])
 	{
 		swap_variable = data->x[0];

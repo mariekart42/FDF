@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:02:11 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:58:26 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,55 +40,28 @@ int	keyboard_hook(int key)
 	return (0);
 }
 
-int main(int argc, char *argv[])
+int32_t	main(int argc, char *argv[])
 {
-    t_data  data;
-    t_fdf   fdf;
-    if (argc != 2)
-        error_msg("input args incorrect! --> usage:  ./exec <map>\n");
-    data.mlx = mlx_init();
+	t_data	data;
+	t_fdf	fdf;
+
+	if (argc != 2)
+		error_msg("input args incorrect! --> usage:  ./exec <map>\n");
+	data.mlx = mlx_init();
 	if (data.mlx == NULL)
 		return (MLX_ERROR);
-	data.mlx_win = init_window(&data);
+	data.mlx_win = mlx_new_window(data->mlx, WIDHT, HIGHT, WINDOW_NAME);
 	if (data.mlx_win == NULL)
 	{
 		free(data.mlx_win);
 		return (MLX_ERROR);
 	}
-    data.colour = 0xf5fffa;
-    fdf.argv_map = argv[1];
-    init_matrix(&fdf, &data);
-    draw_map(&fdf, &data);  
-    
-    
-    // mlx_hook(data.mlx_win, 2, 1L<<0, close, &data);
-    // mlx_key_hook(data.mlx_win, key_hook, &data);
-	// mlx_loop_hook(data.mlx, &handle_no_event, &data);
-	// mlx_hook(data.mlx_win, 'D', (1L<<0), &handle_keypress(1, &data), &data);
-
+	data.colour = 0xf5fffa;
+	fdf.argv_map = argv[1];
+	init_matrix(&fdf, &data);
+	draw_map(&fdf, &data);
+	
 mlx_key_hook(data.mlx_win, keyboard_hook, &data);
 
-    // colouring();
-    mlx_loop(data.mlx);
+	mlx_loop(data.mlx);
 }
-
-
-
-
-
-void *init_window(t_data *data)
-{
-    // if (AUTO_SIZING == true)
-    //     return (calc_size(data));
-    // else
-        return (mlx_new_window(data->mlx, WIDHT, HIGHT, WINDOW_NAME));
-}
-
-// void *calc_size(t_data *data)
-// {
-//     int32_t widht;
-//     int32_t hight;    
-
-// return NULL;
-//     // return (mlx_new_window(data->mlx, widht, hight, WINDOW_NAME));
-// }

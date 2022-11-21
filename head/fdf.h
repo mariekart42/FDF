@@ -6,21 +6,20 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:33:28 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:56:02 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FDF_H
-#define FDF_H
+#ifndef FDF_H
+# define FDF_H
 
 // if auto_sizing is true, widht's get calculated hight's
 // -> changing Buffers has no effect
 # define WINDOW_NAME "Das ist ein window lol"
-# define AUTO_SIZING false
 
-#define MLX_ERROR 1
+# define MLX_ERROR 1
 
-#define ESCAPE 53
+# define ESCAPE 53
 
 # define WIDHT 2600
 # define HIGHT 1500
@@ -32,16 +31,16 @@
 # define TILE_HIGHT 80
 # define TILE_WIDHT 200
 
-# define START_POINT_X WIDHT/2
+# define START_POINT_X 1300
 # define START_POINT_Y 100
 
 // smoler val makes grid bigger
 # define LINE_LEN 8
 
-#include "../mlx/mlx.h"
-#include "../include/libft/libft.h"
-#include <unistd.h>
-#include <stdio.h>
+# include "../mlx/mlx.h"
+# include "../include/libft/libft.h"
+# include <unistd.h>
+# include <stdio.h>
 # include <stdbool.h>
 
 // cos and sin
@@ -113,6 +112,7 @@ void	init_y(t_data *data, int32_t y1, int32_t y2);
  */
 int32_t linecount(char *argv_map);
 int32_t wordcount(char *argv_map);
+int32_t	open_file(char *argv_map, int32_t open_macro);
 void	init_matrix(t_fdf *fdf, t_data *data);
 
 /*
@@ -142,7 +142,6 @@ void	put_line(t_data *data);
  * functions that help "put_line.c" to draw a line
  * -> ../fdf_files/put_line_helps.c
  */
-
 double	find_x(t_data *data, char *y1_or_y2);
 double	find_y(t_data *data, char *y1_or_y2);
 bool	reached_second_point(t_data *data);
