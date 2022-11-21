@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:17:02 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 11:52:32 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:00:04 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
  * 		m = -------
  * 			x2 - x1
  */
-double m(t_data *x_data, int case_)
+double	m(t_data *x_data, int case_)
 {
-	double m;
-	
+	double	m;
+
 	m = (x_data->y[1] - x_data->y[0]) / (x_data->x[1] - x_data->x[0]);
 	if (case_ == 2 && m < 0)
 		m *= -1;
@@ -35,10 +35,10 @@ double m(t_data *x_data, int case_)
  *  or  b = m * x2 - y1
  * (i always take x2 and y2 cause they don't change during the algo)
  */
-double b(t_data *x_data, int case_)
+double	b(t_data *x_data, int case_)
 {
-	double b;
-	
+	double	b;
+
 	if (case_ == 1 || case_ == 4)
 	{
 		b = m(x_data, 1) * x_data->x[1] - x_data->y[1];
@@ -51,7 +51,7 @@ double b(t_data *x_data, int case_)
 			b *= -1;
 		return (b);
 	}
-	else 
+	else
 	{
 		b = m(x_data, 2) * x_data->x[1] - (HIGHT - x_data->y[1]);
 		if (b < 0)

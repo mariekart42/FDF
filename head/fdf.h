@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:56:02 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:07:01 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,30 @@
 // #include <math.h>
 
 // open function
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 // defines macros for exit func (EXIT_SUCCESS and EXIT_FAILURE)
 # include <stdlib.h>
 
-
-typedef struct  s_fdf
+typedef struct		s_fdf
 {
-	int32_t	**matrix;
-	char	*argv_map;
-	struct s_fdf *next;
-}				t_fdf;
+	int32_t			**matrix;
+	char			*argv_map;
+	struct s_fdf	*next;
+}					t_fdf;
 
 typedef struct	s_data
 {
-    double	x[2];
-    double	y[2];
-	int32_t linecount_map;
-	int32_t wordcount_map;
+	double	x[2];
+	double	y[2];
+	int32_t	linecount_map;
+	int32_t	wordcount_map;
 	int32_t	colour;
 	int32_t	cross_colour;
 	double	slow[2];
-	double 	fast[2];
-    void	*mlx;
+	double	fast[2];
+	void	*mlx;
 	void	*mlx_win;
 }				t_data;
 
@@ -110,8 +109,8 @@ void	init_y(t_data *data, int32_t y1, int32_t y2);
  * functions to initialize the matrix -> z coordinates of the map_file
  * -> ../fdf_files/init_matrix.c
  */
-int32_t linecount(char *argv_map);
-int32_t wordcount(char *argv_map);
+int32_t	linecount(char *argv_map);
+int32_t	wordcount(char *argv_map);
 int32_t	open_file(char *argv_map, int32_t open_macro);
 void	init_matrix(t_fdf *fdf, t_data *data);
 

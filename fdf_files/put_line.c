@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:30:15 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:02:40 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * - fast/slow[1] is either 120 for 'x' or 121 for 'y'
  *   (check out init_direction_speed() for more information)	
  */
-void line_algo(t_data *data)
+void	line_algo(t_data *data)
 {
 	double	slow_factor;
 	double	fast_factor;
@@ -34,27 +34,23 @@ void line_algo(t_data *data)
 	while (reached_second_point(data) == false)
 	{
 		data->fast[0] += fast_factor;
-
-		// if statement asks if the differnce between the last y value and the y value
-		// on the actual line is bigger then 0.5
 		if (distance_to_line(data, slow_factor, fast_factor) > 0.5)
-		{
 			data->slow[0] += slow_factor;
-		}
-		mlx_pixel_put(data->mlx, data->mlx_win, find_x(data, "x1"), find_y(data, "y1"), data->colour);
+		mlx_pixel_put(data->mlx, data->mlx_win, find_x(data, "x1"), \
+						find_y(data, "y1"), data->colour);
 	}
 }
-	
+
 // explaination different if-statements:
 // 1. if bot dots are exactly the same -> just put the one pixel
 // 2. if both dots have the same x-val -> its just a vertical line
 // 3. if both dots have the same y-val -> its just a horizontal line
 // 4. else we need to put the line with the bresenham algo
-void put_line(t_data *data)
+void	put_line(t_data *data)
 {
-	// update following 3 functions for colour in struct now
 	if (data->x[0] == data->x[1] && data->y[0] == data->y[1])
-		mlx_pixel_put(data->mlx, data->mlx_win, data->x[0], data->y[0], data->colour);
+		mlx_pixel_put(data->mlx, data->mlx_win, data->x[0], \
+					data->y[0], data->colour);
 	else if (data->x[0] == data->x[1])
 		put_vertical_line(data);
 	else if (data->y[0] == data->y[1])
@@ -62,4 +58,3 @@ void put_line(t_data *data)
 	else
 		bresenham_algo(data);
 }
-

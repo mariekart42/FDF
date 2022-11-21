@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:29:12 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:30:28 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:01:46 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *   string needs to be "x2"
  * - function returns the x_value that is either fast[0] or slow[0]
  */
-double find_x(t_data *data, char *y1_or_y2)
+double	find_x(t_data *data, char *y1_or_y2)
 {
 	if (ft_strncmp(y1_or_y2, "x2", 2) == 0)
 		return (data->x[1]);
@@ -32,7 +32,7 @@ double find_x(t_data *data, char *y1_or_y2)
  *   string needs to be "y2"
  * - function returns the y_value that is either fast[0] or slow[0]
  */
-double find_y(t_data *data, char *y1_or_y2)
+double	find_y(t_data *data, char *y1_or_y2)
 {
 	if (ft_strncmp(y1_or_y2, "y2", 2) == 0)
 		return (data->y[1]);
@@ -47,7 +47,7 @@ double find_y(t_data *data, char *y1_or_y2)
  * are identical with the second Point (end-point)
  * reutrns false if not
  */
-bool reached_second_point(t_data *data)
+bool	reached_second_point(t_data *data)
 {
 	if (find_x(data, "x1") == data->x[1] && find_y(data, "y1") == data->y[1])
 		return (true);
@@ -84,24 +84,19 @@ bool reached_second_point(t_data *data)
  *    0 1 2 3 4 5 6 7 		   |    0 1 2 3 4 5 6 7
  * 		=> x = [y-b]/m		   | 	  => y = mx+b	
  */
-double distance_to_line(t_data *data, double slow_factor, double fast_factor)
+double	distance_to_line(t_data *data, double slow_factor, double fast_factor)
 {
-	// if case 1 or 4
 	if ((data->slow[1] == 121 && slow_factor == -1 && fast_factor == 1) \
 		|| (data->slow[1] == 120 && slow_factor == 1 && fast_factor == 1))
-		return (find_y(data, "y1") - (m(data, 1) * find_x(data, "x1") + b(data, 1)));
-
-	// if case 3
+		return (find_y(data, "y1") - (m(data, 1) * \
+				find_x(data, "x1") + b(data, 1)));
 	if (data->slow[1] == 121 && slow_factor == 1 && fast_factor == 1)
-	{
-		return ((HIGHT-find_y(data, "y1")) - (m(data, 3) * find_x(data, "x1") + b(data, 3)));
-	}
-	// if case 2
+		return ((HIGHT - find_y(data, "y1")) - (m(data, 3) * \
+				find_x(data, "x1") + b(data, 3)));
 	if (data->slow[1] == 120 && slow_factor == 1 && fast_factor == -1)
-	{
-		return (((HIGHT - find_y(data, "y1") + b(data, 2)) / m(data, 2)) - find_x(data, "x1"));
-	}
+		return (((HIGHT - find_y(data, "y1") + b(data, 2)) / m(data, 2)) - \
+				find_x(data, "x1"));
 	else
 		error_msg("failed to execute distance_to_line\n");
-		return (0);
+	return (0);
 }
