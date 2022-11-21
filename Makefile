@@ -8,7 +8,8 @@ SRC =	include/get_next_line/get_next_line.c \
 		fdf_files/error.c \
 		fdf_files/init_matrix.c \
 		fdf_files/draw_map.c \
-		fdf_files/helper_funcs/helper_funcs.c
+		fdf_files/get_factors.c \
+		fdf_files/put_line_helps.c
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 DEBUG = -fsanitize=address
