@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/18 15:02:12 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:12:29 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ double distance_to_line(t_data *data, double slow_factor, double fast_factor)
 		error_msg("failed to execute distance_to_line\n");
 		return (0);
 }
+
 
 /*
  * go_factor:	

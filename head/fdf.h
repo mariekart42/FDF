@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/19 16:24:54 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:05:38 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 // smoler val makes grid bigger
 # define LINE_LEN 8
 
-
-#include "../include/mlx/mlx.h"
+// #include <X11/X.h>
+#include "../mlx/mlx.h"
 #include "../include/libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>

@@ -20,7 +20,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):
-	$(MAKE) -C include/mlx/
+	$(MAKE) -C mlx/
 	$(MAKE) -C include/libft/
 	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a $(DEBUG) -o $(NAME)
 	@echo "Everything compiled successfully"
@@ -34,7 +34,7 @@ clean:
 	@$(RM) $(NAME)
 	
 fclean: clean
-	@$(MAKE) clean -C include/mlx/
+	@$(MAKE) clean -C mlx/
 	@$(MAKE) clean -C include/libft/
 	
 re: fclean all

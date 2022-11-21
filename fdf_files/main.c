@@ -6,11 +6,26 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/19 15:53:41 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:13:27 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
+
+int	handle_keypress(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+
+	printf("Keypress: %d\n", keysym);
+	return (0);
+}
+
+// int	handle_keyrelease(int keysym, void *data)
+// {
+// 	printf("Keyrelease: %d\n", keysym);
+// 	return (0);
+// }
 
 int main(int argc, char *argv[])
 {
@@ -18,29 +33,28 @@ int main(int argc, char *argv[])
     t_fdf   fdf;
     if (argc != 2)
         error_msg("input args incorrect! --> usage:  ./exec <map>\n");
-    
-    printf(YEL"\n>------- start -------\n\n\n"RESET);
-
     data.mlx = mlx_init();
-    
-    // mlx_new_window(data.mlx, WIDHT, HIGHT, WINDOW_NAME);
-
-    data.cross_colour = 0xff6347;
-
-    data.colour = 0x708090; //grey
-    data.colour = 0xffefd5;
-    
-    fdf.argv_map = argv[1];
-    
-
-    init_matrix(&fdf, &data);
-    
+	if (data.mlx == NULL)
+		return (1);
 	data.mlx_win = init_window(&data);
+	if (data.mlx_win == NULL)
+	{
+		free(data.mlx_win);
+		return (2);
+	}
+    fdf.argv_map = argv[1];
+    init_matrix(&fdf, &data);
+    draw_map(&fdf, &data);  
     
-    draw_map(&fdf, &data);    
+    
+    // mlx_hook(data.mlx_win, 2, 1L<<0, close, &data);
+    // mlx_key_hook(data.mlx_win, key_hook, &data);
+	mlx_loop_hook(data.mlx, &handle_no_event, &data);
+	mlx_hook(data.mlx_win, 'D', (1L<<0), &handle_keypress(XK_Escape, &data), &data);
+
+
 
     // colouring();
-
     mlx_loop(data.mlx);
 }
 
