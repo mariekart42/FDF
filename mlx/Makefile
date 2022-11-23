@@ -1,42 +1,20 @@
+#
+#
 
-NAME = fdf
-LIBFT = include/libft
-SRC =	include/get_next_line/get_next_line.c \
-		fdf_files/math.c \
-		fdf_files/main.c \
-		fdf_files/etc.c \
-		fdf_files/put_line.c \
-		fdf_files/error.c \
-		fdf_files/init_matrix.c \
-		fdf_files/draw_map.c \
-		fdf_files/get_factors.c \
-		fdf_files/put_line_helps.c
+NOM=libmlx.a
+SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c
+OBJ1=$(SRC:.c=.o)
+OBJ=$(OBJ1:.m=.o)
+CFLAGS+=-O2
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes -g
-DEBUG = -fsanitize=address
-LIBS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+all: $(NOM)
 
-all: $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME):
-	$(MAKE) -C mlx/
-	$(MAKE) -C include/libft/
-	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a $(DEBUG) -o $(NAME)
-	@echo "Everything compiled successfully"
-
-g:
-	$(MAKE) -C libft/
-	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a -o $(NAME)
-	@echo "my shit compiled successfully"
+$(NOM):	$(OBJ)
+	ar -r $(NOM) $(OBJ)
+	ranlib $(NOM)
 
 clean:
-	@$(RM) $(NAME)
-	
-fclean: clean
-	@$(MAKE) clean -C mlx/
-	@$(MAKE) clean -C include/libft/
-	
-re: fclean all
+	rm -f $(NOM) $(OBJ) *~
+	rm -f mlx_app
+
+re: clean all

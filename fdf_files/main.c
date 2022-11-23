@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:58:26 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:21:20 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,10 @@
 
 int	keyboard_hook(int key)
 {
-	// if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
-	// 	key_move(key, content);
-	// else if (key == ANGLE_UP || key == ANGLE_DOWN || key == ANGLE_LEFT
-	// 	|| key == ANGLE_RIGHT)
-	// 	key_angle(key, content);
-	// else if (key == RESET)
-	// 	data_generator(content);
-	// else if (key == 6 || key == 7 || key == 8 || key == 9 || key == 11
-	// 	|| key == 45 || key == 46)
-	// 	key_color(key, content);
-	// else if (key == 24 || key == 27) 
-	// 	key_zoom(key, content);
-	// else if (key == Z_SCALE_UP || key == Z_SCALE_DOWN)
-	// 	key_z_scale(key, content);
 	if (key == ESCAPE)
 	{
-		// free_content(data);
 		exit(0);
 	}
-
-	// handle_event(content);
-	// draw(content);
-    // draw_map()
 	return (0);
 }
 
@@ -50,7 +31,7 @@ int32_t	main(int argc, char *argv[])
 	data.mlx = mlx_init();
 	if (data.mlx == NULL)
 		return (MLX_ERROR);
-	data.mlx_win = mlx_new_window(data->mlx, WIDHT, HIGHT, WINDOW_NAME);
+	data.mlx_win = mlx_new_window(data.mlx, WIDHT, HIGHT, WINDOW_NAME);
 	if (data.mlx_win == NULL)
 	{
 		free(data.mlx_win);
@@ -60,8 +41,7 @@ int32_t	main(int argc, char *argv[])
 	fdf.argv_map = argv[1];
 	init_matrix(&fdf, &data);
 	draw_map(&fdf, &data);
-	
-mlx_key_hook(data.mlx_win, keyboard_hook, &data);
-
+	mlx_key_hook(data.mlx_win, keyboard_hook, &data);
 	mlx_loop(data.mlx);
+	mlx_destroy_window(data.mlx, data.mlx_win);
 }

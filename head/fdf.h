@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 20:07:01 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:22:51 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@
 // smoler val makes grid bigger
 # define LINE_LEN 8
 
+// factor to change the contrast of line lenght
+# define COTRAST_SIZE 10
+
 # include "../mlx/mlx.h"
 # include "../include/libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdbool.h>
-
-// cos and sin
-// #include <math.h>
 
 // open function
 # include <sys/stat.h>
@@ -111,7 +111,7 @@ void	init_y(t_data *data, int32_t y1, int32_t y2);
  */
 int32_t	linecount(char *argv_map);
 int32_t	wordcount(char *argv_map);
-int32_t	open_file(char *argv_map, int32_t open_macro);
+int32_t	open_file(char *argv_map);
 void	init_matrix(t_fdf *fdf, t_data *data);
 
 /*

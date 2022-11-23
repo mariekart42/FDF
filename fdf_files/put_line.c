@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 20:02:40 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:16:04 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	line_algo(t_data *data)
 // 1. if bot dots are exactly the same -> just put the one pixel
 // 2. if both dots have the same x-val -> its just a vertical line
 // 3. if both dots have the same y-val -> its just a horizontal line
-// 4. else we need to put the line with the bresenham algo
+// 4. else we need to put the line with the line algo
 void	put_line(t_data *data)
 {
 	if (data->x[0] == data->x[1] && data->y[0] == data->y[1])
@@ -56,5 +56,5 @@ void	put_line(t_data *data)
 	else if (data->y[0] == data->y[1])
 		put_horizontal_line(data);
 	else
-		bresenham_algo(data);
+		line_algo(data);
 }

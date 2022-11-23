@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/21 19:56:09 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:22:36 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ int32_t	wordcount(char *argv_map)
  * calls error_msg function that exits the program if something went wrong
  * returns the filedescriptor of the file
  */
-int32_t	open_file(char *argv_map, int32_t open_macro)
+int32_t	open_file(char *argv_map)
 {
-	fd = open(fdf->argv_map, O_RDONLY);
+	int32_t	fd;
+
+	fd = open(argv_map, O_RDONLY, 0);
 	if (fd < 0)
 		error_msg("unable to open file!\n");
 	return (fd);
@@ -85,7 +87,7 @@ void	init_matrix(t_fdf *fdf, t_data *data)
 	i = 0;
 	data->linecount_map = linecount(fdf->argv_map);
 	data->wordcount_map = wordcount(fdf->argv_map);
-	fd = open_file(fdf->argv_map, O_RDONLY, 0);
+	fd = open_file(fdf->argv_map);
 	fdf->matrix = malloc(sizeof(t_fdf *) * data->linecount_map);
 	while (data->linecount_map > i)
 	{
@@ -93,12 +95,11 @@ void	init_matrix(t_fdf *fdf, t_data *data)
 		fdf->matrix[i] = malloc(sizeof(t_fdf) * data->wordcount_map);
 		while (data->wordcount_map > k)
 		{
-			fdf->matrix[i][k] = ft_atoi(tmp[k]) * 10;
+			fdf->matrix[i][k] = ft_atoi(tmp[k]) * COTRAST_SIZE;
 			k++;
 		}
 		k = 0;
-		if (tmp)
-			free(tmp);
 		i++;
+		free(tmp);
 	}
 }
