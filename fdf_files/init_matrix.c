@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/22 13:22:36 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:24:26 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ void	init_matrix(t_fdf *fdf, t_data *data)
 		}
 		k = 0;
 		i++;
-		free(tmp);
+		if (*tmp)
+			free(*tmp);
+		if (tmp)
+			free(tmp);
 	}
 }

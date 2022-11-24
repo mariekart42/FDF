@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/22 13:22:51 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:21:42 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct		s_fdf
 {
 	int32_t			**matrix;
 	char			*argv_map;
-	struct s_fdf	*next;
+	// struct s_fdf	*next;
 }					t_fdf;
 
 typedef struct	s_data

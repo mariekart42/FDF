@@ -23,7 +23,7 @@ all: $(NAME)
 $(NAME):
 	$(MAKE) -C mlx/
 	$(MAKE) -C include/libft/
-	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a $(DEBUG) -o $(NAME)
+	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a -o $(NAME)
 	@echo "Everything compiled successfully"
 
 g:
