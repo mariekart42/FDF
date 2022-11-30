@@ -20,10 +20,12 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):
+OBJ = $(SRC:%.c=%.o)
+
+$(NAME): $(OBJ)
 	$(MAKE) -C mlx/
-	$(MAKE) -C include/libft/
-	$(CC) $(SRC) $(CFLAGS) $(LIBS) $(LIBFT)/libft.a -o $(NAME)
+	cd include/libft && make bonus; cd ../../
+	$(CC) $(LIBFT)/libft.a $(OBJ) $(CFLAGS) $(LIBS)  -o $(NAME)
 	@echo "Everything compiled successfully"
 
 g:

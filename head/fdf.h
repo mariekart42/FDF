@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/24 14:21:42 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:06:14 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 
 // defines macros for exit func (EXIT_SUCCESS and EXIT_FAILURE)
 # include <stdlib.h>
+// # include "../include/libft/libft.h"
 
 typedef struct		s_fdf
 {
@@ -109,10 +110,10 @@ void	init_y(t_data *data, int32_t y1, int32_t y2);
  * functions to initialize the matrix -> z coordinates of the map_file
  * -> ../fdf_files/init_matrix.c
  */
-int32_t	linecount(char *argv_map);
-int32_t	wordcount(char *argv_map);
+int32_t	linecount(char *argv_map, t_list **head);
+int32_t	wordcount(char *argv_map, t_list **head);
 int32_t	open_file(char *argv_map);
-void	init_matrix(t_fdf *fdf, t_data *data);
+void	init_matrix(t_fdf *fdf, t_data *data, t_list **head);
 
 /*
  * mathematical operations to calculate a line
@@ -145,5 +146,8 @@ double	find_x(t_data *data, char *y1_or_y2);
 double	find_y(t_data *data, char *y1_or_y2);
 bool	reached_second_point(t_data *data);
 double	distance_to_line(t_data *data, double slow_factor, double fast_factor);
+
+
+void	saveFree(void *toFree);
 
 #endif
