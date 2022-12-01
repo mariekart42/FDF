@@ -6,24 +6,11 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/12/01 14:17:26 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:07:59 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head/fdf.h"
-
-int	keyboard_hook(int key)
-{
-	if (key == ESCAPE)
-		exit(0);
-	return (0);
-}
-
-void	save_free(void *to_free)
-{
-	if (to_free)
-		free(to_free);
-}
 
 int32_t	main(int argc, char *argv[])
 {

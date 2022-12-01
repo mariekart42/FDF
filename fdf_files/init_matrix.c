@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/12/01 14:16:26 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:07:19 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int32_t	linecount(char *argv_map, t_list **head)
 {
 	int32_t	fd;
 	int32_t	count;
+	char	*line;
 
-	count = 0;
 	fd = open(argv_map, O_RDONLY, 0);
+	count = 0;
+	line = NULL;
 	if (fd < 0)
 		error_msg("unable to open file!\n");
-	char *line = get_next_line(fd);
+	line = get_next_line(fd);
 	ft_lstadd_back(head, ft_lstnew((void *)line));
 	while (line)
 	{
@@ -34,7 +36,7 @@ int32_t	linecount(char *argv_map, t_list **head)
 	return (count);
 }
 
-/* function caounts the amount of single arguments in one line
+/* function counts the amount of single arguments in one line
  */
 int32_t	wordcount(char *argv_map, t_list **head)
 {

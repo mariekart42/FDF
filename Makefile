@@ -5,7 +5,7 @@ SRC =	include/get_next_line/get_next_line.c \
 		fdf_files/main.c \
 		fdf_files/etc.c \
 		fdf_files/put_line.c \
-		fdf_files/error.c \
+		fdf_files/extra.c \
 		fdf_files/init_matrix.c \
 		fdf_files/draw_map.c \
 		fdf_files/get_factors.c \

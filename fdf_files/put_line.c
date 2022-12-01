@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:40:16 by mmensing          #+#    #+#             */
-/*   Updated: 2022/11/22 13:16:04 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:09:48 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
  *	(check out get_go_factor() for more information)
  *
  * fast and slow direction:
- * - fast/slow[0] is the content of the 'fast' or 'slow' direction (either x or y)
+ * - fast/slow[0] is the content of the 'fast' or 'slow' direction 
+ * 		(either x or y)
  * - fast/slow[1] is either 120 for 'x' or 121 for 'y'
  *   (check out init_direction_speed() for more information)	
  */
