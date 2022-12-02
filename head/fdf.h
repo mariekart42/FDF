@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:34:10 by mmensing          #+#    #+#             */
-/*   Updated: 2022/12/01 14:35:18 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:36:01 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@
 # define START_POINT_Y 100
 
 // smoler val makes grid bigger
-# define LINE_LEN 8
+# define LINE_LEN 1
 
 // factor to change the contrast of line lenght
-# define COTRAST_SIZE 10
 
 # include "../mlx/mlx.h"
 # include "../include/libft/libft.h"
@@ -52,16 +51,15 @@
 
 // defines macros for exit func (EXIT_SUCCESS and EXIT_FAILURE)
 # include <stdlib.h>
-// # include "../include/libft/libft.h"
 
-typedef struct		s_fdf
+typedef struct s_fdf
 {
 	int32_t			**matrix;
 	char			*argv_map;
 	int32_t			fd;
 }					t_fdf;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	double	x[2];
 	double	y[2];
@@ -88,10 +86,14 @@ void	draw_tile(t_data *data, double x1, double y1, int32_t *z);
 void	draw_map(t_fdf *fdf, t_data *data);
 
 /* functions to displays error message and exit the program
- * -> ../fdf_files/error.c											*/
+ * -> ../fdf_files/extra.c											*/
 void	error_msg(char *msg);
+int		keyboard_hook(int key);
+void	save_free(void *to_free);
+int32_t	exit_(t_data *data);
 
-/* functions to initialize coordinates and print lines with the same x or y values
+/* functions to initialize coordinates and print lines with 
+ * the same x or y values
  * -> ../fdf_files/etc.c											*/
 void	put_horizontal_line(t_data *data);
 void	put_vertical_line(t_data *data);
@@ -128,8 +130,5 @@ double	find_x(t_data *data, char *y1_or_y2);
 double	find_y(t_data *data, char *y1_or_y2);
 bool	reached_second_point(t_data *data);
 double	distance_to_line(t_data *data, double slow_factor, double fast_factor);
-
-
-void	saveFree(void *toFree);
 
 #endif

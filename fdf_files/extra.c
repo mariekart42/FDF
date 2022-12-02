@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   extra.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:21:58 by mmensing          #+#    #+#             */
-/*   Updated: 2022/12/01 17:08:09 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:10:38 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void	save_free(void *to_free)
 {
 	if (to_free)
 		free(to_free);
+}
+
+int32_t	exit_(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	exit(0);
 }

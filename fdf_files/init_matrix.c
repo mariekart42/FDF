@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:05 by mmensing          #+#    #+#             */
-/*   Updated: 2022/12/01 17:07:19 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:35:26 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,18 @@ void	safe_adress(t_list **head, char *line, char **tmp, int32_t *matrix_i)
 
 /* function initialize the matrix with the current map
  * as an 2d array of type int
+ * for changing the contrast between the single z-values
+ * -> change 'contrast' variable 
  */
 void	init_matrix(t_fdf *fdf, t_data *data, t_list **head)
 {
 	int32_t	i;
 	int32_t	k;
+	int32_t	contrast;
 	char	*line;
 	char	**tmp;
 
+	contrast = 1;
 	k = 0;
 	i = 0;
 	data->linecount_map = linecount(fdf->argv_map, head);
@@ -118,7 +122,7 @@ void	init_matrix(t_fdf *fdf, t_data *data, t_list **head)
 		fdf->matrix[i] = malloc(sizeof(t_fdf) * data->wordcount_map);
 		safe_adress(head, line, tmp, fdf->matrix[i]);
 		while (data->wordcount_map > ++k)
-			fdf->matrix[i][k] = ft_atoi(tmp[k]) * COTRAST_SIZE;
+			fdf->matrix[i][k] = ft_atoi(tmp[k]) * contrast;
 		k = 0;
 		i++;
 	}

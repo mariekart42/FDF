@@ -6,7 +6,7 @@
 /*   By: mmensing <mmensing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:52:51 by mmensing          #+#    #+#             */
-/*   Updated: 2022/12/01 17:07:59 by mmensing         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:10:05 by mmensing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int32_t	main(int argc, char *argv[])
 	draw_map(&fdf, &data);
 	mlx_key_hook(data.mlx_win, keyboard_hook, &data);
 	ft_lstclear(&head, save_free);
-	exit(0);
+	mlx_hook(data.mlx_win, 17, 0, exit_, &data);
 	mlx_loop(data.mlx);
-	mlx_destroy_window(data.mlx, data.mlx_win);
 }
